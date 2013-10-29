@@ -1,0 +1,55 @@
+A. SOFTWARE
+===========
+ESTIMATE is an Open Source, Web-based "Construction Estimating Software".
+ESTIMATE has been released under GNU Affero General Public License.
+Archives/Files on the Sourceforge:
+1. Netbeans Project folder with full source code. Libraries/Jars required for building the Application have been included separately (not included in the source tar ball).
+2. User Manual with System Requirements, Installation Instructions, details of Application features (PDF Document) and step-by-step introduction to all modules.
+3. Libraries required for building the application from it's source. We encourage the developers to download/get the latest versions of the libraries from their respective distributions.
+4. War file for deployment on Apache Tomcat Server. Current application has been deployed and tested on Apache Tomcat 7 and Mysql Database server 5.5.
+5. Database dump for testing purpose only (WARNING: use only with a freshly initialized database).
+6. Each new release will have it's own dedicated directory.
+
+B. INSTALLATION
+===============
+Download the latest version of ESTIMATE from Sourceforge.
+Read the CHANGELOG to know the difference between various releases.
+You can either download the "war file" for direct installation (recommended) or you can build the application from it's source.
+Please read the User Guide for detailed installation instructions.
+If prompted for installation key, use any 25-character long string like the one given below:
+XXXXX-XXXXX-XXXXX-XXXXX-XXXXX
+
+C. BUGS
+=======
+If you find one then please bring it to my notice.
+
+D. WISHLIST
+===========
+1. Tender and Risk Management.
+2. Internationalization (Language and Currency).
+3. Report Generation in formats other than PDF, addition of new reports, customizations.
+4. Augmentation of the User Interface.
+5. Packaging and Installer.
+6. System Integration with Project Management, Document Management and ERP Applications.
+7. Code Documentation and Clean-up.
+8. Reference Manual
+
+E. DEVELOPMENT
+==============
+1. The user-interface of the application is completely database-driven. User Interface is separate from business logic of the application.
+2. Interesting Places:
+    a. WEB-INF/classes
+    b. Go through com.wanhive.basic package and sub-packages inside the "src" directory to understand the under-lying framework.
+    c. themes directory inside the web directory.
+    d. "menu" table inside the database schema (search inside WEB-INF/classes directory).
+3. Feel free to contact me in case of any query, but only after you have completely exhausted your brain-power.
+4. The basic framework itself is use-case neutral, it can be easily modified and can be used for development of any entirely new web-based application.
+5. Character sets used: latin-1 in database, ISO-8859-1 in web pages.
+6. Documentation is incomplete. Keep looking inside the "Documents" folder.
+
+F. SUPPORT/CONTACT
+==================
+1. Official web-site of ESTIMATE: http://estimate.wanhive.com
+2. Twitter handle: wanhive
+3. Subscribe to our mailing list on Sourceforge
+4. Send me an email: amit (at) wanhive-(dot)-com

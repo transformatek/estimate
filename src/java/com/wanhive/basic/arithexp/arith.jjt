@@ -1,0 +1,169 @@
+options{  JDK_VERSION = "1.6";  static = true;}PARSER_BEGIN(Parser)package com.wanhive.basic.arithexp;import java.util.*;
+import java.io.*;
+public class Parser{  public static void main(String args [])  {    System.out.println("Reading from standard input...");    System.out.print("Enter an expression like \"1+(2+3)*var;\" :");    new Parser(System.in);    try    {      SimpleNode n = Parser.start(System.out);      n.dump("");      System.out.println("Thank you.");    }    catch(ParseException e)
+	{
+		System.out.println("PARSE ERROR: "+e.getMessage());
+	}
+	catch(TokenMgrError e)
+	{
+		System.out.println("SYNTAX ERROR: "+e.getMessage());
+	}
+	catch(NumberFormatException e)
+	{
+		System.out.println("NAN: "+e.getMessage());
+	}
+	catch(Exception e)
+	{
+	  	System.out.println("EXCEPTION: "+e.getMessage());
+	}  }
+  static double last_result=0.0;}PARSER_END(Parser)
+
+// START: LEXER SPEC
+
+/* Always Skip */
+SKIP:
+{
+  " " | "\t" | "\r" | "\f" | "\n"
+}
+
+/* Comments */
+SPECIAL_TOKEN:
+{
+	<SINGLE_LINE_COMMENT: "//" (~["\n","\r"])* ("\n" | "\r" | "\r\n")>
+}
+
+/* Separators */
+TOKEN:
+{<SC: ";">}
+
+/* Delimiters */
+TOKEN:
+{
+	<LP: "(">
+	|
+	<RP: ")">
+}
+
+/* Literals */
+TOKEN:
+{<NUMBER: (<DIGITS>)+ | (<DIGITS>)*"."(<DIGITS>)+>}
+TOKEN:
+{<#DIGITS: ["0"-"9"]>}
+
+/* Operators */
+TOKEN:
+{
+	<PLUS: "+">
+	|
+	<MINUS: "-">
+	|
+	<MULT: "*">
+	|
+	<DIV: "/">
+}
+
+/* Helper Tokens */
+TOKEN:
+{<MEM: "$">}
+TOKEN:
+{<QUOTE: "'"> | <DQUOTE: "\"">}
+TOKEN:
+{<QUIT: "q">}
+
+//END: LEXER SPEC
+
+SimpleNode start(PrintStream out)  throws NumberFormatException:{double result;}
+{
+  result=expression() <SC>
+	{
+		out.println(result);
+		System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+		return jjtThis;
+	}
+	|
+	<QUIT>
+	{
+		System.out.println("Exiting...");
+		return null;
+	}
+}
+
+double expression() throws NumberFormatException #Add(>1):
+{
+	double result;
+	double temp;
+	//Token t;
+}
+{
+	result=term()
+	(
+	<PLUS> temp=term() {result+=temp;}
+	|
+	<MINUS> temp=term(){result-=temp;}
+	)*
+	{
+		Parser.last_result=result;
+		return result;
+	}
+}
+double term() throws NumberFormatException #Mult(>1):
+{
+	double result;
+	double temp;
+	//Token t;
+}
+{
+	result=factor()
+	(
+	<MULT> temp=factor() {result*=temp;}
+	|
+	<DIV> temp=factor() {result/=temp;}
+	)*
+	{return result;}
+}
+
+double factor() throws NumberFormatException #Factor:
+{
+	double result;
+}
+{
+	result=number() {return result;}
+	|
+	<MEM> {return Parser.last_result;}
+	|
+	<LP> result=expression() <RP> {return result;}
+	|
+	<MINUS> result=factor() {return -result;}
+	|
+	<PLUS> result=factor() {return result;}
+}
+
+double number() throws NumberFormatException:
+{
+	//Token t;
+	double result=0;
+	double temp=0;
+}
+{
+	LOOKAHEAD(3) result=ISnumber() <QUOTE>[temp=ISnumber() <DQUOTE>]
+	{return (result*12+temp)*0.0254;}
+	|
+	LOOKAHEAD(2) temp=ISnumber()<DQUOTE>
+	{return temp*0.0254;}
+	|
+	result=ISnumber() {return result;}
+}
+
+double ISnumber() throws NumberFormatException:
+{
+	Token t;
+	double result;
+}
+{
+	t=<NUMBER>
+	{
+		result=Double.parseDouble(t.image);
+		System.out.println("Found: "+result);
+		return result;
+	}
+}

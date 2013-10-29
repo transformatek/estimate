@@ -1,0 +1,31 @@
+Version 1.1.0 (2013-10-30)
+--------------------------
+#Release Type: Major
+#Criticality: Medium
+#Backward Compatibility: YES
+* Updated javascript files related to tender management (minor changes). Tender Management is
+is still an experimental feature.
+* Updated all PDF Reports; Indian Rupee was being used as currency, removed it 
+and now using the word "Amount" instead (made the reports currency-neutral);
+updated table headings and descriptions to make them sound more meaningful.
+* Updated Product's home page to estimate.wanhive.com. Added hyper-link to the product 
+home-page in the login screen.
+* Application was printing user's password on screen, removed this security loophole.
+* The application asks for a license key during installation, this might confuse some users. 
+Application now loads a default key.
+* Updated database schema. This is a major update because it makes the database schema 
+look more consistent, backward compatibility has been maintained, no new table has been added.
+All columns of type "text" have been changed to the type "varchar", all varchar field max lengths are now 
+power of two (32/64/128/256/512), all columns of type int are now 10-digit long.
+
+#Updated files: Majority of files inside the com.wanhive.system.db.report package;
+tenderAction.js, tenderReport.js (inside the scripts folder); MenuManager.java; Application.java
+All jsp and html files (formatting, title, typos and alerts); README (inside documentation folder);
+app.lcf, schema, data (inside WEB_INF/classes folder);
+=================================================================
+
+
+Version 1.0 (2013-09-21)
+------------------------
+Keeping this release as the base-reference.
+=================================================================

@@ -1,0 +1,609 @@
+/* Modified on 2013-10-29 by Amit Kumar (amitkriit@gmail.com): Read changelog */
+SET FOREIGN_KEY_CHECKS=0;
+
+/*Table structure for table `assembly` */
+
+DROP TABLE IF EXISTS `assembly`;
+
+CREATE TABLE `assembly` (
+  `assembly_id` int(10) NOT NULL AUTO_INCREMENT,
+  `assembly_name` varchar(64) NOT NULL DEFAULT 'name',
+  `assembly_specification` varchar(512) NOT NULL DEFAULT '-',
+  `assembly_unit` varchar(32) NOT NULL DEFAULT 'unit',
+  `assembly_price` double NOT NULL DEFAULT '0',
+  `assembly_premium` double NOT NULL DEFAULT '100',
+  `assembly_remarks` varchar(512) NOT NULL DEFAULT '-',
+  `assembly_parent_id` int(10) NOT NULL,
+  `assembly_display_unit` varchar(32) NOT NULL DEFAULT '-',
+  `assembly_price_multiplier` double NOT NULL DEFAULT '0',
+  PRIMARY KEY (`assembly_id`),
+  KEY `FK_assembly` (`assembly_parent_id`),
+  CONSTRAINT `assembly_ibfk_1` FOREIGN KEY (`assembly_parent_id`) REFERENCES `assembly` (`assembly_id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Table structure for table `assemblycostbook` */
+
+DROP TABLE IF EXISTS `assemblycostbook`;
+
+CREATE TABLE `assemblycostbook` (
+  `ref_id` int(10) NOT NULL AUTO_INCREMENT,
+  `assembly_id` int(10) NOT NULL,
+  `costbook_id` int(10) NOT NULL,
+  `price` double NOT NULL DEFAULT '0',
+  `premium` double NOT NULL DEFAULT '0',
+  `multiplier` double NOT NULL DEFAULT '1',
+  PRIMARY KEY (`ref_id`),
+  UNIQUE KEY `costbook_id` (`costbook_id`,`assembly_id`),
+  KEY `assembly_id` (`assembly_id`),
+  CONSTRAINT `assemblycostbook_ibfk_1` FOREIGN KEY (`costbook_id`) REFERENCES `costbook` (`costbook_id`) ON DELETE CASCADE,
+  CONSTRAINT `assemblycostbook_ibfk_2` FOREIGN KEY (`assembly_id`) REFERENCES `assembly` (`assembly_id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Table structure for table `assemblyoverhead` */
+
+DROP TABLE IF EXISTS `assemblyoverhead`;
+
+CREATE TABLE `assemblyoverhead` (
+  `ref_id` int(10) NOT NULL AUTO_INCREMENT,
+  `oh_name` varchar(64) NOT NULL DEFAULT '-',
+  `oh_description` varchar(512) NOT NULL DEFAULT '-',
+  `oh_amount` double NOT NULL DEFAULT '0',
+  `assembly_id` int(10) NOT NULL,
+  `costbook_id` int(10) NOT NULL,
+  `oh_amount_str` varchar(128) NOT NULL DEFAULT '-',
+  PRIMARY KEY (`ref_id`),
+  KEY `FK_assemblyoverhead` (`assembly_id`),
+  KEY `FK_assemblyoverhead1` (`costbook_id`),
+  CONSTRAINT `assemblyoverhead_ibfk_1` FOREIGN KEY (`assembly_id`) REFERENCES `assembly` (`assembly_id`) ON DELETE CASCADE,
+  CONSTRAINT `assemblyoverhead_ibfk_2` FOREIGN KEY (`costbook_id`) REFERENCES `costbook` (`costbook_id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Table structure for table `bill` */
+
+DROP TABLE IF EXISTS `bill`;
+
+CREATE TABLE `bill` (
+  `bill_id` int(10) NOT NULL AUTO_INCREMENT,
+  `estimate_id` int(10) NOT NULL,
+  `assembly_id` int(10) NOT NULL,
+  `premium` double NOT NULL,
+  `remarks` varchar(512) NOT NULL DEFAULT 'remarks',
+  PRIMARY KEY (`bill_id`),
+  KEY `estimate_id` (`estimate_id`),
+  KEY `assembly_id` (`assembly_id`),
+  CONSTRAINT `bill_ibfk_1` FOREIGN KEY (`estimate_id`) REFERENCES `estimate` (`estimate_id`) ON DELETE CASCADE,
+  CONSTRAINT `bill_ibfk_2` FOREIGN KEY (`assembly_id`) REFERENCES `assembly` (`assembly_id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Table structure for table `billentry` */
+
+DROP TABLE IF EXISTS `billentry`;
+
+CREATE TABLE `billentry` (
+  `entry_id` int(10) NOT NULL AUTO_INCREMENT,
+  `bill_id` int(10) NOT NULL,
+  `specification` varchar(512) NOT NULL DEFAULT '-',
+  `entry_number` varchar(128) NOT NULL DEFAULT '-',
+  `entry_length` varchar(128) NOT NULL DEFAULT '-',
+  `entry_breadth` varchar(128) NOT NULL DEFAULT '-',
+  `entry_height` varchar(128) NOT NULL DEFAULT '-',
+  `entry_weight` varchar(128) NOT NULL DEFAULT '-',
+  `entry_total` double NOT NULL,
+  `start` bigint(20) NOT NULL DEFAULT '0',
+  `finish` bigint(20) NOT NULL DEFAULT '0',
+  `status` int(10) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`entry_id`),
+  KEY `FK_billentry` (`bill_id`),
+  CONSTRAINT `billentry_ibfk_1` FOREIGN KEY (`bill_id`) REFERENCES `bill` (`bill_id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Table structure for table `category` */
+
+DROP TABLE IF EXISTS `category`;
+
+CREATE TABLE `category` (
+  `category_id` int(10) NOT NULL AUTO_INCREMENT,
+  `category_name` varchar(64) NOT NULL DEFAULT '--',
+  `specifications` varchar(512) NOT NULL DEFAULT '--',
+  `remarks` varchar(512) NOT NULL DEFAULT '--',
+  `category_parent_id` int(10) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`category_id`),
+  KEY `category_parent_id` (`category_parent_id`),
+  CONSTRAINT `0_20` FOREIGN KEY (`category_parent_id`) REFERENCES `category` (`category_id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Table structure for table `cbcategory` */
+
+DROP TABLE IF EXISTS `cbcategory`;
+
+CREATE TABLE `cbcategory` (
+  `cbcat_id` int(10) NOT NULL AUTO_INCREMENT,
+  `cbcat_name` varchar(64) NOT NULL DEFAULT 'name',
+  `cbcat_specification` varchar(512) NOT NULL DEFAULT 'spec',
+  `cbcat_remarks` varchar(512) NOT NULL DEFAULT 'remarks',
+  `cbcat_parent_id` int(10) NOT NULL,
+  PRIMARY KEY (`cbcat_id`),
+  KEY `FK_cbcategory` (`cbcat_parent_id`),
+  CONSTRAINT `cbcategory_ibfk_1` FOREIGN KEY (`cbcat_parent_id`) REFERENCES `cbcategory` (`cbcat_id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Table structure for table `contactdirectory` */
+
+DROP TABLE IF EXISTS `contactdirectory`;
+
+CREATE TABLE `contactdirectory` (
+  `cd_id` int(10) NOT NULL AUTO_INCREMENT,
+  `cd_name` varchar(64) NOT NULL DEFAULT '-',
+  `cd_specification` varchar(512) NOT NULL DEFAULT '-',
+  `cd_remarks` varchar(512) NOT NULL DEFAULT '-',
+  `cd_parent_id` int(10) NOT NULL,
+  PRIMARY KEY (`cd_id`),
+  KEY `FK_contactdirectory` (`cd_parent_id`),
+  CONSTRAINT `contactdirectory_ibfk_1` FOREIGN KEY (`cd_parent_id`) REFERENCES `contactdirectory` (`cd_id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Table structure for table `contacts` */
+
+DROP TABLE IF EXISTS `contacts`;
+
+CREATE TABLE `contacts` (
+  `contact_id` int(10) NOT NULL AUTO_INCREMENT,
+  `cd_id` int(10) NOT NULL,
+  `contact_name` varchar(64) NOT NULL DEFAULT '-',
+  `contact_description` varchar(512) NOT NULL DEFAULT '-',
+  `contact_address` varchar(512) NOT NULL DEFAULT '-',
+  `contact_number` varchar(512) NOT NULL DEFAULT '-',
+  `contact_website` varchar(512) NOT NULL DEFAULT '-',
+  `contact_email` varchar(512) NOT NULL DEFAULT '-',
+  `contact_remarks` varchar(512) NOT NULL DEFAULT '-',
+  PRIMARY KEY (`contact_id`),
+  KEY `FK_contacts` (`cd_id`),
+  CONSTRAINT `contacts_ibfk_1` FOREIGN KEY (`cd_id`) REFERENCES `contactdirectory` (`cd_id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Table structure for table `control_estimate` */
+
+DROP TABLE IF EXISTS `control_estimate`;
+
+CREATE TABLE `control_estimate` (
+  `control_estimate_id` int(10) NOT NULL AUTO_INCREMENT,
+  `estimate_id` int(10) NOT NULL,
+  `control_project_id` int(10) NOT NULL,
+  PRIMARY KEY (`control_estimate_id`),
+  KEY `FK_control_estimate1` (`estimate_id`),
+  KEY `FK_control_estimate2` (`control_project_id`),
+  CONSTRAINT `control_estimate_ibfk_1` FOREIGN KEY (`estimate_id`) REFERENCES `estimate` (`estimate_id`) ON DELETE CASCADE,
+  CONSTRAINT `control_estimate_ibfk_2` FOREIGN KEY (`control_project_id`) REFERENCES `control_project` (`control_project_id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Table structure for table `control_project` */
+
+DROP TABLE IF EXISTS `control_project`;
+
+CREATE TABLE `control_project` (
+  `control_project_id` int(10) NOT NULL AUTO_INCREMENT,
+  `control_project_name` varchar(64) NOT NULL DEFAULT 'name',
+  `control_project_specification` varchar(512) NOT NULL DEFAULT 'spec',
+  `control_project_remarks` varchar(512) NOT NULL DEFAULT 'remarks',
+  `control_project_parent_id` int(10) NOT NULL,
+  PRIMARY KEY (`control_project_id`),
+  KEY `control_project_parent_id` (`control_project_parent_id`),
+  CONSTRAINT `control_project_ibfk_1` FOREIGN KEY (`control_project_parent_id`) REFERENCES `control_project` (`control_project_id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Table structure for table `control_projectfiles` */
+
+DROP TABLE IF EXISTS `control_projectfiles`;
+
+CREATE TABLE `control_projectfiles` (
+  `file_id` int(10) NOT NULL AUTO_INCREMENT,
+  `control_project_id` int(10) NOT NULL,
+  `name` varchar(128) NOT NULL,
+  `remarks` varchar(512) NOT NULL DEFAULT '--',
+  `uploaded_on` varchar(128) NOT NULL,
+  `file_content` mediumblob NOT NULL,
+  `type` varchar(128) NOT NULL DEFAULT 'text',
+  `size` int(10) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`file_id`),
+  KEY `control_project_id` (`control_project_id`),
+  CONSTRAINT `control_projectfiles_ibfk_1` FOREIGN KEY (`control_project_id`) REFERENCES `control_project` (`control_project_id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Table structure for table `costbook` */
+
+DROP TABLE IF EXISTS `costbook`;
+
+CREATE TABLE `costbook` (
+  `costbook_id` int(10) NOT NULL AUTO_INCREMENT,
+  `costbook_name` varchar(64) NOT NULL DEFAULT 'name',
+  `costbook_specification` varchar(512) NOT NULL DEFAULT 'spec',
+  `costbook_remarks` varchar(512) NOT NULL DEFAULT 'remarks',
+  `cbcat_id` int(10) NOT NULL,
+  PRIMARY KEY (`costbook_id`),
+  KEY `FK_costbook` (`cbcat_id`),
+  CONSTRAINT `costbook_ibfk_1` FOREIGN KEY (`cbcat_id`) REFERENCES `cbcategory` (`cbcat_id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Table structure for table `document_directory` */
+
+DROP TABLE IF EXISTS `document_directory`;
+
+CREATE TABLE `document_directory` (
+  `directory_id` int(10) NOT NULL AUTO_INCREMENT,
+  `name` varchar(64) NOT NULL DEFAULT '-',
+  `description` varchar(512) NOT NULL DEFAULT '-',
+  `remarks` varchar(512) NOT NULL DEFAULT '-',
+  `directory_parent_id` int(10) NOT NULL,
+  PRIMARY KEY (`directory_id`),
+  KEY `FK_document_directory` (`directory_parent_id`),
+  CONSTRAINT `FK_document_directory` FOREIGN KEY (`directory_parent_id`) REFERENCES `document_directory` (`directory_id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Table structure for table `document_reference` */
+
+DROP TABLE IF EXISTS `document_reference`;
+
+CREATE TABLE `document_reference` (
+  `file_id` int(10) NOT NULL AUTO_INCREMENT,
+  `directory_id` int(10) NOT NULL,
+  `name` varchar(128) NOT NULL DEFAULT '-',
+  `remarks` varchar(512) NOT NULL DEFAULT '-',
+  `uploaded_on` varchar(128) NOT NULL DEFAULT '-',
+  `file_content` mediumblob NOT NULL,
+  `type` varchar(128) NOT NULL,
+  `size` bigint(20) NOT NULL,
+  PRIMARY KEY (`file_id`),
+  KEY `FK_document_reference` (`directory_id`),
+  CONSTRAINT `FK_document_reference` FOREIGN KEY (`directory_id`) REFERENCES `document_directory` (`directory_id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Table structure for table `estimate` */
+
+DROP TABLE IF EXISTS `estimate`;
+
+CREATE TABLE `estimate` (
+  `estimate_id` int(10) NOT NULL AUTO_INCREMENT,
+  `estimate_name` varchar(64) NOT NULL DEFAULT 'name',
+  `estimate_specification` varchar(512) NOT NULL DEFAULT 'spec',
+  `estimate_remarks` varchar(512) NOT NULL DEFAULT 'remarks',
+  `project_id` int(10) NOT NULL,
+  `costbook_id` int(10) NOT NULL DEFAULT '0',
+  `contingency` double NOT NULL DEFAULT '0',
+  `rounded_figure` varchar(256) NOT NULL DEFAULT '-',
+  PRIMARY KEY (`estimate_id`),
+  KEY `FK_estimate` (`project_id`),
+  CONSTRAINT `estimate_ibfk_1` FOREIGN KEY (`project_id`) REFERENCES `project` (`project_id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Table structure for table `favouritelinks` */
+
+DROP TABLE IF EXISTS `favouritelinks`;
+
+CREATE TABLE `favouritelinks` (
+  `fav_id` int(10) NOT NULL AUTO_INCREMENT,
+  `menu_id` int(10) NOT NULL,
+  `user_id` int(10) NOT NULL,
+  `count` int(10) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`fav_id`),
+  KEY `menu_id` (`menu_id`),
+  KEY `user_id` (`user_id`),
+  CONSTRAINT `favouritelinks_ibfk_1` FOREIGN KEY (`menu_id`) REFERENCES `menu` (`menu_id`) ON DELETE CASCADE,
+  CONSTRAINT `favouritelinks_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Table structure for table `item` */
+
+DROP TABLE IF EXISTS `item`;
+
+CREATE TABLE `item` (
+  `item_id` int(10) NOT NULL AUTO_INCREMENT,
+  `item_name` varchar(64) NOT NULL DEFAULT '--',
+  `item_specification` varchar(512) NOT NULL DEFAULT '--',
+  `item_unit` varchar(32) NOT NULL DEFAULT '--',
+  `item_price` double NOT NULL DEFAULT '0',
+  `remarks` varchar(512) NOT NULL DEFAULT '--',
+  `category_id` int(10) NOT NULL DEFAULT '1',
+  `item_type` varchar(32) NOT NULL DEFAULT 'Material',
+  PRIMARY KEY (`item_id`),
+  KEY `category_id` (`category_id`),
+  CONSTRAINT `0_28` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Table structure for table `itemassembly` */
+
+DROP TABLE IF EXISTS `itemassembly`;
+
+CREATE TABLE `itemassembly` (
+  `ref_id` int(10) NOT NULL AUTO_INCREMENT,
+  `assembly_id` int(10) NOT NULL,
+  `item_id` int(10) NOT NULL,
+  `fraction` double NOT NULL,
+  `costbook_id` int(10) NOT NULL,
+  `fraction_str` varchar(128) NOT NULL DEFAULT '-',
+  PRIMARY KEY (`ref_id`),
+  UNIQUE KEY `costbook_id` (`costbook_id`,`assembly_id`,`item_id`),
+  KEY `item_id` (`item_id`),
+  KEY `assembly_id` (`assembly_id`),
+  CONSTRAINT `itemassembly_ibfk_1` FOREIGN KEY (`item_id`) REFERENCES `item` (`item_id`) ON DELETE CASCADE,
+  CONSTRAINT `itemassembly_ibfk_2` FOREIGN KEY (`assembly_id`) REFERENCES `assembly` (`assembly_id`) ON DELETE CASCADE,
+  CONSTRAINT `itemassembly_ibfk_3` FOREIGN KEY (`costbook_id`) REFERENCES `costbook` (`costbook_id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Table structure for table `materialcostbook` */
+
+DROP TABLE IF EXISTS `materialcostbook`;
+
+CREATE TABLE `materialcostbook` (
+  `ref_id` int(10) NOT NULL AUTO_INCREMENT,
+  `costbook_id` int(10) NOT NULL,
+  `item_id` int(10) NOT NULL,
+  `price` double NOT NULL,
+  PRIMARY KEY (`ref_id`),
+  KEY `item_id` (`item_id`),
+  KEY `costbook_id` (`costbook_id`),
+  CONSTRAINT `materialcostbook_ibfk_1` FOREIGN KEY (`item_id`) REFERENCES `item` (`item_id`) ON DELETE CASCADE,
+  CONSTRAINT `materialcostbook_ibfk_2` FOREIGN KEY (`costbook_id`) REFERENCES `costbook` (`costbook_id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Table structure for table `menu` */
+
+DROP TABLE IF EXISTS `menu`;
+
+CREATE TABLE `menu` (
+  `menu_id` int(10) NOT NULL AUTO_INCREMENT,
+  `menu_parent_id` int(10) NOT NULL,
+  `menu_name` varchar(128) NOT NULL DEFAULT '-',
+  `menu_description` varchar(512) DEFAULT NULL,
+  `menu_image` varchar(256) DEFAULT NULL,
+  `menu_action` varchar(512) DEFAULT NULL,
+  `menu_link` varchar(512) DEFAULT NULL,
+  `menu_status` int(10) NOT NULL DEFAULT '0',
+  `submenu_width` int(10) NOT NULL DEFAULT '0',
+  `help` varchar(512) NOT NULL DEFAULT 'documentation/defaultContent.html',
+  `appLink` varchar(512) NOT NULL DEFAULT 'defaultContent.jsp',
+  PRIMARY KEY (`menu_id`),
+  KEY `FK_menu` (`menu_parent_id`),
+  CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`menu_parent_id`) REFERENCES `menu` (`menu_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Table structure for table `menu_context` */
+
+DROP TABLE IF EXISTS `menu_context`;
+
+CREATE TABLE `menu_context` (
+  `ref_id` int(10) NOT NULL AUTO_INCREMENT,
+  `menu_id` int(10) NOT NULL,
+  `call_id` int(10) NOT NULL DEFAULT '1',
+  `remarks` varchar(512) NOT NULL DEFAULT '-',
+  PRIMARY KEY (`ref_id`),
+  UNIQUE KEY `menu_id` (`menu_id`),
+  KEY `FK_contextmenu` (`menu_id`),
+  KEY `FK_contextmenu2` (`call_id`),
+  CONSTRAINT `menu_context_ibfk_1` FOREIGN KEY (`menu_id`) REFERENCES `menu` (`menu_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `menu_context_ibfk_2` FOREIGN KEY (`call_id`) REFERENCES `menu` (`menu_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Table structure for table `menu_permission` */
+
+DROP TABLE IF EXISTS `menu_permission`;
+
+CREATE TABLE `menu_permission` (
+  `permission_id` int(10) NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) NOT NULL,
+  `menu_id` int(10) NOT NULL,
+  `status` int(10) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`permission_id`),
+  KEY `menu_id` (`menu_id`),
+  KEY `user_id` (`user_id`),
+  CONSTRAINT `menu_permission_ibfk_1` FOREIGN KEY (`menu_id`) REFERENCES `menu` (`menu_id`) ON DELETE CASCADE,
+  CONSTRAINT `menu_permission_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Table structure for table `overhead` */
+
+DROP TABLE IF EXISTS `overhead`;
+
+CREATE TABLE `overhead` (
+  `overhead_id` int(10) NOT NULL AUTO_INCREMENT,
+  `overhead_title` varchar(512) NOT NULL DEFAULT '-',
+  `overhead_percent` double NOT NULL DEFAULT '0',
+  `overhead_type` varchar(32) NOT NULL DEFAULT 'Actual',
+  `overhead_amount` double NOT NULL DEFAULT '0',
+  `estimate_id` int(10) NOT NULL,
+  PRIMARY KEY (`overhead_id`),
+  KEY `FK_estimate` (`estimate_id`),
+  CONSTRAINT `overhead_ibfk_1` FOREIGN KEY (`estimate_id`) REFERENCES `estimate` (`estimate_id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Table structure for table `project` */
+
+DROP TABLE IF EXISTS `project`;
+
+CREATE TABLE `project` (
+  `project_id` int(10) NOT NULL AUTO_INCREMENT,
+  `project_name` varchar(64) NOT NULL DEFAULT 'name',
+  `project_specification` varchar(512) NOT NULL DEFAULT 'spec',
+  `project_remarks` varchar(512) NOT NULL DEFAULT 'remarks',
+  `project_parent_id` int(10) NOT NULL,
+  PRIMARY KEY (`project_id`),
+  KEY `FK_project` (`project_parent_id`),
+  CONSTRAINT `project_ibfk_1` FOREIGN KEY (`project_parent_id`) REFERENCES `project` (`project_id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Table structure for table `projectfiles` */
+
+DROP TABLE IF EXISTS `projectfiles`;
+
+CREATE TABLE `projectfiles` (
+  `file_id` int(10) NOT NULL AUTO_INCREMENT,
+  `project_id` int(10) NOT NULL,
+  `name` varchar(128) NOT NULL,
+  `remarks` varchar(512) NOT NULL DEFAULT '--',
+  `uploaded_on` varchar(128) NOT NULL,
+  `file_content` mediumblob NOT NULL,
+  `type` varchar(128) NOT NULL DEFAULT 'text',
+  `size` int(10) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`file_id`),
+  KEY `FK_projectfiles` (`project_id`),
+  CONSTRAINT `projectfiles_ibfk_1` FOREIGN KEY (`project_id`) REFERENCES `project` (`project_id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Table structure for table `tender` */
+
+DROP TABLE IF EXISTS `tender`;
+
+CREATE TABLE `tender` (
+  `tender_id` int(10) NOT NULL AUTO_INCREMENT,
+  `tender_name` varchar(64) NOT NULL DEFAULT '-',
+  `tender_description` varchar(512) NOT NULL DEFAULT '-',
+  `tender_amount` varchar(128) NOT NULL DEFAULT '-',
+  `tender_earnest_money` varchar(128) NOT NULL DEFAULT '-',
+  `tender_time_limit` varchar(128) NOT NULL DEFAULT '-',
+  `tender_open_date` varchar(128) NOT NULL DEFAULT '01/01/2009',
+  `tender_status` int(10) NOT NULL DEFAULT '0',
+  `tender_remarks` varchar(512) NOT NULL DEFAULT '-',
+  `tender_dir_id` int(10) NOT NULL,
+  PRIMARY KEY (`tender_id`),
+  KEY `project_id` (`tender_dir_id`),
+  CONSTRAINT `tender_ibfk_1` FOREIGN KEY (`tender_dir_id`) REFERENCES `tender_directory` (`tender_dir_id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Table structure for table `tender_contractor` */
+
+DROP TABLE IF EXISTS `tender_contractor`;
+
+CREATE TABLE `tender_contractor` (
+  `tender_contractor_id` int(10) NOT NULL AUTO_INCREMENT,
+  `tender_id` int(10) NOT NULL,
+  `contact_id` int(10) NOT NULL,
+  PRIMARY KEY (`tender_contractor_id`),
+  UNIQUE KEY `contact_id` (`contact_id`,`tender_id`),
+  KEY `FK_tender_contractor` (`contact_id`),
+  KEY `FK_tender_contractor2` (`tender_id`),
+  CONSTRAINT `tender_contractor_ibfk_1` FOREIGN KEY (`contact_id`) REFERENCES `contacts` (`contact_id`) ON DELETE CASCADE,
+  CONSTRAINT `tender_contractor_ibfk_2` FOREIGN KEY (`tender_id`) REFERENCES `tender` (`tender_id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Table structure for table `tender_directory` */
+
+DROP TABLE IF EXISTS `tender_directory`;
+
+CREATE TABLE `tender_directory` (
+  `tender_dir_id` int(10) NOT NULL AUTO_INCREMENT,
+  `tender_dir_parent_id` int(10) NOT NULL,
+  `tender_dir_name` varchar(64) NOT NULL,
+  `tender_dir_description` varchar(512) NOT NULL DEFAULT '-',
+  `tender_dir_remarks` varchar(512) NOT NULL DEFAULT '-',
+  PRIMARY KEY (`tender_dir_id`),
+  KEY `FK_tender_directory` (`tender_dir_parent_id`),
+  CONSTRAINT `tender_directory_ibfk_1` FOREIGN KEY (`tender_dir_parent_id`) REFERENCES `tender_directory` (`tender_dir_id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Table structure for table `tender_item_quote` */
+
+DROP TABLE IF EXISTS `tender_item_quote`;
+
+CREATE TABLE `tender_item_quote` (
+  `tender_quotation_id` int(10) NOT NULL AUTO_INCREMENT,
+  `tender_item_id` int(10) NOT NULL,
+  `tender_contractor_id` int(10) NOT NULL,
+  `quote_price_basis` int(10) NOT NULL DEFAULT '0',
+  `quote` double NOT NULL,
+  PRIMARY KEY (`tender_quotation_id`),
+  UNIQUE KEY `tender_item_id` (`tender_item_id`,`tender_contractor_id`),
+  KEY `tender_contractor_id` (`tender_contractor_id`),
+  CONSTRAINT `tender_item_quote_ibfk_1` FOREIGN KEY (`tender_item_id`) REFERENCES `tender_items` (`tender_item_id`) ON DELETE CASCADE,
+  CONSTRAINT `tender_item_quote_ibfk_2` FOREIGN KEY (`tender_contractor_id`) REFERENCES `tender_contractor` (`tender_contractor_id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Table structure for table `tender_items` */
+
+DROP TABLE IF EXISTS `tender_items`;
+
+CREATE TABLE `tender_items` (
+  `tender_item_id` int(10) NOT NULL AUTO_INCREMENT,
+  `assembly_name` varchar(64) NOT NULL,
+  `assembly_description` varchar(512) NOT NULL,
+  `assembly_display_unit` varchar(32) NOT NULL DEFAULT '-',
+  `assembly_unit` varchar(32) NOT NULL DEFAULT '-',
+  `assembly_price` double NOT NULL,
+  `assembly_price_multiplier` double NOT NULL,
+  `assembly_premium` double NOT NULL,
+  `quantity` double NOT NULL,
+  `tender_id` int(10) NOT NULL,
+  PRIMARY KEY (`tender_item_id`),
+  KEY `FK_tender_items` (`tender_id`),
+  CONSTRAINT `tender_items_ibfk_1` FOREIGN KEY (`tender_id`) REFERENCES `tender` (`tender_id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Table structure for table `tender_notes` */
+
+DROP TABLE IF EXISTS `tender_notes`;
+
+CREATE TABLE `tender_notes` (
+  `note_id` int(10) NOT NULL AUTO_INCREMENT,
+  `note_description` varchar(512) NOT NULL DEFAULT '-',
+  `tender_id` int(10) NOT NULL,
+  PRIMARY KEY (`note_id`),
+  KEY `FK_tender_notes` (`tender_id`),
+  CONSTRAINT `tender_notes_ibfk_1` FOREIGN KEY (`tender_id`) REFERENCES `tender` (`tender_id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Table structure for table `user` */
+
+DROP TABLE IF EXISTS `user`;
+
+CREATE TABLE `user` (
+  `user_id` int(10) NOT NULL AUTO_INCREMENT,
+  `user_name` varchar(64) NOT NULL DEFAULT 'user',
+  `password` varchar(128) NOT NULL DEFAULT '900150983cd24fb0d6963f7d28e17f72',
+  `fullName` varchar(128) NOT NULL DEFAULT '-',
+  `remarks` varchar(512) NOT NULL DEFAULT '-',
+  `employee_code` varchar(128) NOT NULL DEFAULT '-',
+  `app_theme` varchar(64) NOT NULL DEFAULT 'blue',
+  `usrd_id` int(10) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`user_id`),
+  KEY `FK_user` (`usrd_id`),
+  CONSTRAINT `user_ibfk_1` FOREIGN KEY (`usrd_id`) REFERENCES `userdirectory` (`usrd_id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Table structure for table `userdirectory` */
+
+DROP TABLE IF EXISTS `userdirectory`;
+
+CREATE TABLE `userdirectory` (
+  `usrd_id` int(10) NOT NULL AUTO_INCREMENT,
+  `usrd_name` varchar(64) NOT NULL DEFAULT '-',
+  `usrd_description` varchar(512) NOT NULL DEFAULT '-',
+  `usrd_remarks` varchar(512) NOT NULL DEFAULT '-',
+  `usrd_parent_id` int(10) NOT NULL,
+  PRIMARY KEY (`usrd_id`),
+  KEY `FK_userdirectory` (`usrd_parent_id`),
+  CONSTRAINT `userdirectory_ibfk_1` FOREIGN KEY (`usrd_parent_id`) REFERENCES `userdirectory` (`usrd_id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Table structure for table `workdone` */
+
+DROP TABLE IF EXISTS `workdone`;
+
+CREATE TABLE `workdone` (
+  `work_id` int(10) NOT NULL AUTO_INCREMENT,
+  `entry_id` int(10) NOT NULL,
+  `description` varchar(512) NOT NULL DEFAULT '-',
+  `number` varchar(128) NOT NULL DEFAULT '-',
+  `length` varchar(128) NOT NULL DEFAULT '-',
+  `breadth` varchar(128) NOT NULL DEFAULT '-',
+  `height` varchar(128) NOT NULL DEFAULT '-',
+  `weight` varchar(128) NOT NULL DEFAULT '-',
+  `total` double NOT NULL,
+  `start` bigint(20) NOT NULL DEFAULT '0',
+  `finish` bigint(20) NOT NULL DEFAULT '0',
+  `control_estimate_id` int(10) NOT NULL,
+  PRIMARY KEY (`work_id`),
+  KEY `FK_workdone1` (`entry_id`),
+  KEY `FK_workdone2` (`control_estimate_id`),
+  CONSTRAINT `workdone_ibfk_1` FOREIGN KEY (`entry_id`) REFERENCES `billentry` (`entry_id`) ON DELETE CASCADE,
+  CONSTRAINT `workdone_ibfk_2` FOREIGN KEY (`control_estimate_id`) REFERENCES `control_estimate` (`control_estimate_id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+SET FOREIGN_KEY_CHECKS=1;

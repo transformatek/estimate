@@ -1,0 +1,56 @@
+thead { display: table-header-group;}
+tbody { display: table-row-group;}
+tfoot {display: table-footer-group;}
+
+body {
+	font-family: Trebuchet MS, Lucida Sans Unicode, Arial, sans-serif;
+	font-size: 0.8em;
+}
+
+/*----------------MAIN CONTENT TABLE----------------------------*/
+.slNoRow {
+	background-color: white;
+}
+
+table.contentTable {
+	/*border-width: 2px;border-spacing: ;*/
+	/*border-width: 7px;*/
+	/*border-style: outset;*/
+	border-color: black;
+	/*border-color: #dfdfdf;*/
+	/*border-collapse: collapse;*/
+	background-color: white;
+	font-size: 0.9em;
+}
+table.contentTable tr {
+	}
+table.contentTable th {
+	/*border-width: 7px;*/
+	padding: 2px;
+	/*border-style: dashed;*/
+	border-color: black;
+	background-color: #E1E1FF;
+	/*-moz-border-radius: ;*/
+}
+
+table.contentTable thead td {
+	/*border-width: 7px;*/
+	padding: 2px;
+	/*border-style: ridge;*/
+	border-color: black;
+	/*background-color: #ff0000;*/
+	background-color: #E1E1FF;
+	/*#EFEFDE*/ /*#F3F3F3*/ /*#E1E1FF*/ /*#E3E3C6*/ /*#EEEEEE*/ /*#553388*/
+	/*#93D3FF*/ /*#99CCFF*/ /*#DADADA*/ /*#CDCDCD*/ /*#E0E0E0*/
+	/*-moz-border-radius: ;*/
+}
+
+table.contentTable tbody td {
+	/*border-width: 7px;*/
+	padding: 2px;
+	/*border-style: groove;*/
+	border-color: black;
+	text-align: right;
+	/*background-color: #EEEEDE;*/
+	/*-moz-border-radius: ;*/
+}

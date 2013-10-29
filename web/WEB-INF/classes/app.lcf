@@ -1,0 +1,19 @@
+#Product Description
+PRODUCTNAME=Estimate
+RELEASENAME=Community Edition
+PRODUCTID=0904-1
+PRODUCTVERSION=1.1.0
+RELEASEYEAR=2013
+COMPANY=Amit Kumar
+COMPANYWEBSITE=http\://www.wanhive.com
+PRODUCTWEBSITE=http\://estimate.wanhive.com
+
+#Configuration Variables
+ENVVAR=ESTICON
+LICFILE=configuration.properties
+DBFILE=database.properties
+DBPOOL=community
+
+#System Configuration
+SESSIONTIMEOUT=15
+LICENSESERVER=http\://127.0.0.1\:8080/licensing

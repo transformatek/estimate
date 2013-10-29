@@ -1,0 +1,91 @@
+/**
+ * JJTree template file created by SF JavaCC plugin 1.5.17+ wizard for JavaCC 1.5.0+
+ */
+options
+{
+  JDK_VERSION = "1.6";
+  static = true;
+}
+
+PARSER_BEGIN(IdIndexer)
+package com.wanhive.basic.indexer;
+
+import java.io.*;
+import java.util.*;
+public class IdIndexer
+{
+  public static void main(String args [])
+  {
+    System.out.println("Reading from standard input...");
+    System.out.print("Enter an expression like \"1+(2+3)*var;\" :");
+    new IdIndexer(System.in);
+    try {
+      ArrayList<String> al= IdIndexer.start(System.out);
+      System.out.println("Thank you.");
+      for(int i=0;i<al.size();i++)
+      {
+      	System.out.println("$$"+al.get(i));
+      }
+      
+    } catch (Exception e) {
+      System.out.println("PARSE ERROR: "+e.getMessage());
+    }
+    catch (TokenMgrError e) {
+      System.out.println("SYNTAX ERROR: "+e.getMessage());
+    }
+  }
+}
+
+PARSER_END(IdIndexer)
+
+/***********************************************/
+/*
+ * LEXER SPEC
+*/
+
+SKIP:
+{
+< ~["0"-"9", ";", "_", "-", "a"-"z", "A"-"Z"]>
+}
+
+TOKEN:  /* NUMBER: Basic Integer Type */
+{
+	<INTIGER_LITERAL: (<DIGIT>)+>
+}
+
+TOKEN:
+{
+	<IDENTIFIER: (["_","-","a"-"z","A"-"Z"])+>
+}
+
+TOKEN:
+{
+	<SC: ";">
+}
+
+TOKEN:
+{
+	<#DIGIT: ["0"-"9"]>
+}
+/*=============================================================*/
+/*                           PARSER                            */
+/*=============================================================*/
+
+ArrayList<String> start(PrintStream out) #Start:
+{
+	ArrayList<String> al=new ArrayList<String>();
+	String s;
+}
+{
+	(s=constant() {al.add(s);}) ((s=constant() {al.add(s);} | <IDENTIFIER>))*<SC> {return al;}
+	|
+	<IDENTIFIER> (<IDENTIFIER> | constant())* <SC> {return al;}
+}
+
+String constant() #Constant:
+{
+	Token t;
+}
+{
+	(t=<INTIGER_LITERAL> /*| t=<IDENTIFIER>*/){return t.image;}
+}

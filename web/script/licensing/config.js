@@ -1,0 +1,1 @@
+var loadWindowInIframe=function(d,a,c){var b=internalWindow.open("licBox","iframe",a,c,"width=700px,height=450px,resize=1,scrolling=1,center=1")};

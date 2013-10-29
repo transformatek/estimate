@@ -1,0 +1,1306 @@
+SET FOREIGN_KEY_CHECKS=0$
+
+/*Data for the table `assembly` */
+
+insert into `assembly` values 
+
+(1,'parent','parent','Nos.',0,100,'parent',1,'-',0)$
+
+/*Data for the table `category` */
+
+insert into `category` values 
+
+(1,'parent','parent','parent',1)$
+
+/*Data for the table `cbcategory` */
+
+insert into `cbcategory` values 
+
+(1,'name','spec','remarks',1)$
+
+/*Data for the table `contactdirectory` */
+
+insert into `contactdirectory` values 
+
+(1,'-','-','-',1)$
+
+/*Data for the table `control_project` */
+
+insert into `control_project` values 
+
+(1,'name','spec','remarks',1)$
+
+/*Data for the table `document_directory` */
+
+insert into `document_directory` values 
+
+(1,'-','-','-',1)$
+
+/*Data for the table `menu` */
+
+insert into `menu` values 
+
+(1,1,'main','main','','','',0,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(20,1,'Costing Master','Manage works, materials and costs','','','',0,150,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(40,1,'-','','','','',0,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(60,1,'Projects','Manage Projects and Estimates','','','',0,150,'documentation/defaultContent.html','blank.jsp'),
+
+(80,1,'Utilities','General tools','','','',0,130,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(100,1,'Reports','Generate reports','','','',0,150,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(120,1,'-','','','','',0,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(140,1,'Administration','User/system management','','','',0,150,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(10010,20,'Assemblies','Manage Schedule of Rates','','callNavigatorAjax(10010);myAjaxPageFetcher.load(\"centralContent\", \"MyActionDispatcher?path=10010&amp;param=Assemblies\", true, [\"script/items/assembly/assemblyAction.js\"], \"\",\"get\");','',0,0,'documentation/documentation.jsp?page=12','blank.jsp'),
+
+(10020,20,'Resources','Manage Bill of Material (material/equipments/labor etc.)','','callNavigatorAjax(10020);myAjaxPageFetcher.load(\"centralContent\", \"MyActionDispatcher?path=10020&amp;param=Resources\", true, [\"script/items/material/materialAction.js\"], \"\",\"get\");','',0,0,'documentation/documentation.jsp?page=18','blank.jsp'),
+
+(10030,20,'-','','','','',0,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(10040,20,'Costbooks','Prepare Analysis of Rates','','callNavigatorAjax(10040);myAjaxPageFetcher.load(\"centralContent\", \"MyActionDispatcher?path=10040&amp;param=Manage+Costbook\", true,[ \"script/items/costbook/costBookAction.js\"], \"\",\"get\");','',0,0,'documentation/documentation.jsp?page=22','blank.jsp'),
+
+(10110,80,'Calculator','Expression Calculator','','myAjaxPageFetcher.load(\"utilitiesDiv\", \"MyActionDispatcher?path=10110&amp;param=Calculator\", true,[ \"script/utilities/calculator.js\"], \"\",\"get\");','',0,0,'documentation/defaultContent.html','utils.jsp'),
+
+(10111,80,'Unit Converter','Convert between units of measurement','','myAjaxPageFetcher.load(\"utilitiesDiv\", \"MyActionDispatcher?path=10111&amp;param=Unit+Converter\", true, [\"script/utilities/unitConverter.js\"], \"\",\"get\");','',0,0,'documentation/defaultContent.html','utils.jsp'),
+
+(10120,80,'-','','','','',0,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(10130,80,'Contacts','Store Important Contacts like vendors, suppliers','','callNavigatorAjax(10130);myAjaxPageFetcher.load(\"centralContent\", \"MyActionDispatcher?path=10130&amp;param=Contacts\", true, [\"script/utilities/contacts.js\"], \"\",\"get\");','',0,0,'documentation/documentation.jsp?page=58','blank.jsp'),
+
+(10140,80,'Documents','Store references/files','','callNavigatorAjax(10140);myAjaxPageFetcher.load(\"centralContent\", \"MyActionDispatcher?path=10140&amp;param=References\", true, [\"script/utilities/documentAction.js\"], \"\",\"get\");','',0,0,'documentation/documentation.jsp?page=63','blank.jsp'),
+
+(10210,100,'Costing Master','Analysis of Rate, Bill of Material','','','',0,150,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(10220,100,'-','','','','',0,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(10230,100,'Projects','Project cost, bill of quantity etc','','','',0,150,'documentation/defaultContent.html','blank.jsp'),
+
+(10240,10210,'Assemblies','Generate Assembly list and associated reports','','callNavigatorAjax(10240);myAjaxPageFetcher.load(\"centralContent\", \"MyActionDispatcher?path=10240&amp;param=Assemblies\", true,[\"script/items/report/assemblyReport.js\"], \"\",\"get\");','',0,0,'documentation/documentation.jsp?page=68','blank.jsp'),
+
+(10250,10210,'Resources','Generate Material List and associated report','','callNavigatorAjax(10250);myAjaxPageFetcher.load(\"centralContent\", \"MyActionDispatcher?path=10250&amp;param=Material\", true,[\"script/items/report/materialReport.js\"], \"\",\"get\");','',0,0,'documentation/documentation.jsp?page=71','blank.jsp'),
+
+(10260,10230,'Definitive Estimate','Generate Cost Sheets and BOQ','','callNavigatorAjax(10260);myAjaxPageFetcher.load(\"centralContent\", \"MyActionDispatcher?path=10260&amp;param=Definitive+Project+Reports\", true, [\"script/project/report/projectReport.js\"], \"\",\"get\");','',0,0,'documentation/documentation.jsp?page=72','blank.jsp'),
+
+(10270,10230,'Control Estimate','Generate Status reports and Projections','','callNavigatorAjax(10270);myAjaxPageFetcher.load(\"centralContent\", \"MyActionDispatcher?path=10270&amp;param=Control+Project+Reports\", true, [\"script/project/report/controlProjectReport.js\"], \"\",\"get\");','',0,0,'documentation/documentation.jsp?page=78','blank.jsp'),
+
+(10280,10230,'-','','','','',0,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(10290,10230,'Tenders','Generate DNIT, carry out Bid Analysis','','callNavigatorAjax(10290);myAjaxPageFetcher.load(\"centralContent\", \"MyActionDispatcher?path=10290&amp;param=TenderReport\", true, [\"script/project/report/tender/tenderReport.js\"], \"\",\"get\");','',0,0,'documentation/defaultContent.html','blank.jsp'),
+
+(10310,140,'Log Out','Log off the system, you will need to log in to access the facility','','','index.jsp?logout=1',0,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(10320,140,'-','','','','',2,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(10330,140,'Personalize','Change personal settings','','callNavigatorAjax(10330);myAjaxPageFetcher.load(\"centralContent\", \"MyActionDispatcher?path=10330&amp;param=Personalize\", true, [\"script/admin/personalSettings.js\"], \"\",\"get\");','',0,0,'documentation/documentation.jsp?page=84','blank.jsp'),
+
+(10340,140,'-','-','','','',2,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(10350,140,'User Management','Manage users and define Access rights','','callNavigatorAjax(10350);myAjaxPageFetcher.load(\"centralContent\", \"MyActionDispatcher?path=10350&amp;param=User+Management\", true, [\"script/admin/userManagement.js\"], \"\",\"get\");','',0,0,'documentation/documentation.jsp?page=85','blank.jsp'),
+
+(10410,60,'Definitive Estimate','Create Cost Sheets and BOQ','','callNavigatorAjax(10410);myAjaxPageFetcher.load(\"centralContent\", \"MyActionDispatcher?path=10410&amp;param=Estimating\", true, [\"script/project/definitive/projectAction.js\"], \"\",\"get\");','',0,0,'documentation/documentation.jsp?page=35','blank.jsp'),
+
+(10420,60,'Control Estimate','Manage Time, Cost, Resource, Schedule','','callNavigatorAjax(10420);myAjaxPageFetcher.load(\"centralContent\", \"MyActionDispatcher?path=10420&amp;param=ControlEstimate\", true, [\"script/project/control/controlProjectAction.js\"], \"\",\"get\");','',0,0,'documentation/documentation.jsp?page=47','blank.jsp'),
+
+(10430,60,'-','','','','',0,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(10440,60,'Tenders','Manage Tender Documents, Bids','','callNavigatorAjax(10440);myAjaxPageFetcher.load(\"centralContent\", \"MyActionDispatcher?path=10440&amp;param=Tender\", true, [\"script/project/tender/tenderAction.js\"], \"\",\"get\");','',0,0,'documentation/defaultContent.html','blank.jsp'),
+
+(20010,10010,'Render Assemblies','Render the list of Assemblies','','','',1,0,'documentation/defaultContent.html','AssemblyAction'),
+
+(20020,10010,'Delete Assembly','Delete selected list of Assemblies','','','',1,0,'documentation/defaultContent.html','AssemblyAction'),
+
+(20030,10010,'Update Assembly','Update Assembly','','','',1,0,'documentation/defaultContent.html','AssemblyAction'),
+
+(20040,10010,'Add Assembly','Add new assembly','','','',1,0,'documentation/defaultContent.html','AssemblyAction'),
+
+(20050,10010,'####renderAssemblyItemlist','render itemlist for assembly chosen','','','',5,0,'documentation/defaultContent.html','AssemblyAction'),
+
+(20060,10010,'####updateAssemblyItemList','update the item list for chosen assembly','','','',5,0,'documentation/defaultContent.html','AssemblyAction'),
+
+(20110,10020,'Render Resource','render material tree','','','',1,0,'documentation/defaultContent.html','MaterialAction'),
+
+(20120,10020,'Delete Resource','delete selected materials','','','',1,0,'documentation/defaultContent.html','MaterialAction'),
+
+(20130,10020,'Update Resource','update selected category/item','','','',1,0,'documentation/defaultContent.html','MaterialAction'),
+
+(20140,10020,'Add Resource','add new category/item','','','',1,0,'documentation/defaultContent.html','MaterialAction'),
+
+(20210,10040,'Render CostBook','renders CostBook Directory','','','',1,0,'documentation/defaultContent.html','CostBookAction'),
+
+(20211,10040,'@@@@Render Costbook for Import','Render costbooks for import into Analysis of Rates','','','',2,0,'documentation/defaultContent.html','CostBookAction'),
+
+(20220,10040,'Delete CostBook','deletes selected costbook categories/items','','','',1,0,'documentation/defaultContent.html','CostBookAction'),
+
+(20230,10040,'Update CostBook','updates selected costbook item/category','','','',1,0,'documentation/defaultContent.html','CostBookAction'),
+
+(20240,10040,'Add CostBook','add costbook item/category','','','',1,0,'documentation/defaultContent.html','CostBookAction'),
+
+(20250,10040,'Render CostBook Items','Render Assemblies and Resources with Price defined in the CostBook','','','',1,0,'documentation/defaultContent.html','CostBookAction'),
+
+(20251,10040,'Open Main Analysis Window','Open a new Window for \"Analysis of Rates\" of Assemblies and Resources for the selected CostBook','','','',1,0,'documentation/defaultContent.html','rateAnalysis.jsp'),
+
+(20260,10040,'@@@@Resource List for Selection','Display list of resources for adding into Rate of Analysis','','','',2,0,'documentation/defaultContent.html','CostBookAction'),
+
+(20261,10040,'Get Resources','Display Resources associated with an Assembly for the selected CostBook','','','',1,0,'documentation/defaultContent.html','CostBookAction'),
+
+(20270,10040,'Update Resource Cost','Update Price of a Resource in the selected CostBook','','','',1,0,'documentation/defaultContent.html','CostBookAction'),
+
+(20271,10040,'Delete Resource','Delete a Resource associated with an Assembly','','','',1,0,'documentation/defaultContent.html','CostBookAction'),
+
+(20280,10040,'Edit Volume','Edit the amount of Resource associated to an Assembly in the selected CostBook','','','',1,0,'documentation/defaultContent.html','CostBookAction'),
+
+(20281,10040,'Add Resource','Associate a new Resource to the Assembly in the selected Costbook','','','',1,0,'documentation/defaultContent.html','CostBookAction'),
+
+(20282,10040,'Import Rates','Import Analysis of Rate for an Assembly from a selected CostBook','','','',1,0,'documentation/defaultContent.html','CostBookAction'),
+
+(20283,10040,'Update Basis','Update the Basis of Analysis of Rate for an Assembly','','','',1,0,'documentation/defaultContent.html','CostBookAction'),
+
+(20284,10040,'Get Overheads','Get Overheads for Assembly','','','',1,0,'documentation/defaultContent.html','CostBookAction'),
+
+(20285,10040,'Delete Overhead','Delete Overhead from Assembly','','','',1,0,'documentation/defaultContent.html','CostBookAction'),
+
+(20286,10040,'Add Overhead','Add Overhead to Assembly','','','',1,0,'documentation/defaultContent.html','CostBookAction'),
+
+(20287,10040,'Edit Overhead','Edit selected Overhead of Assembly','','','',1,0,'documentation/defaultContent.html','CostBookAction'),
+
+(20290,10040,'@@@@Render Assemblies for Import','','','','',2,0,'documentation/defaultContent.html','CostBookAction'),
+
+(20291,10040,'Import Assemblies','Import analysis of rates of selected assemblies','','','',1,0,'documentation/defaultContent.html','CostBookAction'),
+
+(20310,10410,'Render Project','Display Project Directories and Estimates','','','',1,0,'documentation/defaultContent.html','ProjectAction'),
+
+(20320,10410,'Delete Project','Delete selected Projects and Estimates','','','',1,0,'documentation/defaultContent.html','ProjectAction'),
+
+(20330,10410,'Edit Project','Edit description of Project or estimate','','','',1,0,'documentation/defaultContent.html','ProjectAction'),
+
+(20340,10410,'Add Project','add new project/estimate','','','',1,0,'documentation/defaultContent.html','ProjectAction'),
+
+(20350,10410,'@@@@Get CostBook','Get CostBooks(For association with selected Estimate)','','','',2,0,'documentation/defaultContent.html','ProjectAction'),
+
+(20360,10410,'Change CostBook','change Coskbook associated with an Estimate','','','',1,0,'documentation/defaultContent.html','ProjectAction'),
+
+(20370,10410,'Get Overheads','get list of Overheads for the selected Estimate','','','',1,0,'documentation/defaultContent.html','ProjectAction'),
+
+(20380,10410,'Delete Overhead','-','','','',1,0,'documentation/defaultContent.html','ProjectAction'),
+
+(20390,10410,'Add Overhead','-','','','',1,0,'documentation/defaultContent.html','ProjectAction'),
+
+(20391,10410,'Update Overhead','-','','','',1,0,'documentation/defaultContent.html','ProjectAction'),
+
+(20410,10410,'@@@@openBillWindow','opens blank estimate window(all bill will be rendered in this window)','','','',2,0,'documentation/defaultContent.html','bill.jsp'),
+
+(20420,10410,'Render Bill','Renders detailed Cost-Sheet of the selected Estimate','','','',1,0,'documentation/defaultContent.html','BillAction'),
+
+(20430,10410,'Remove Assembly','Delete selected Assembly from Estimate','','','',1,0,'documentation/defaultContent.html','BillAction'),
+
+(20440,10410,'Update Premium','Update Premium of the selected entry(Assembly)','','','',1,0,'documentation/defaultContent.html','BillAction'),
+
+(20450,10410,'@@@@List Assemblies','Open list of Assemblies(for importing into Bill)','','','',2,0,'documentation/defaultContent.html','BillAction'),
+
+(20460,10410,'Add Assembly','Add Assemblies to the cost-sheet','','','',1,0,'documentation/defaultContent.html','BillAction'),
+
+(20470,10410,'Display Jobs','Display the list of Jobs associated with a particular Assembly','','','',1,0,'documentation/defaultContent.html','BillAction'),
+
+(20480,10410,'Delete Jobs','Delete Jobs from a Bill','','','',1,0,'documentation/defaultContent.html','BillAction'),
+
+(20490,10410,'Add New Job','Add a new Job to the Bill','','','',1,0,'documentation/defaultContent.html','BillAction'),
+
+(20500,10410,'Edit Selected Job','Edit selected Job','','','',1,0,'documentation/defaultContent.html','BillAction'),
+
+(20610,10010,'Move Assembly','Move selected Assembly to a different tree','','','',1,0,'documentation/defaultContent.html','MoveAction'),
+
+(20611,10010,'Copy Assembly','Duplicate selected Assembly and nested items','','','',1,0,'documentation/defaultContent.html','MoveAction'),
+
+(20620,10020,'Move Resource','Move selected Category/Resource to a different location','','','',1,0,'documentation/defaultContent.html','MoveAction'),
+
+(20630,10040,'Move CostBook','Move selected Category/CostBook','','','',1,0,'documentation/defaultContent.html','MoveAction'),
+
+(20640,10410,'Move Estimate','Move selected Project/Estimate to a different location','','','',1,0,'documentation/defaultContent.html','MoveAction'),
+
+(20650,10410,'Copy Estimate','Duplicate an existing Estimate, including the Bills associated with it','','','',1,0,'documentation/defaultContent.html','MoveAction'),
+
+(20660,10420,'Move Control Estimate','Move Control Project/Estimate','','','',1,0,'documentation/defaultContent.html','MoveAction'),
+
+(20670,10420,'Copy Control Estimate(Not Implemented)','Copy Control Estimate','','','',2,0,'documentation/defaultContent.html','MoveAction'),
+
+(20680,10130,'Move Contact','Move Contacts to a different directory','','','',1,0,'documentation/defaultContent.html','MoveAction'),
+
+(20690,10440,'moveTender','move Tender Directory/Document','','','',1,0,'documentation/defaultContent.html','MoveAction'),
+
+(20710,10410,'Show Project Uploads','Show Uploaded Files','','','',1,0,'documentation/defaultContent.html','ReferenceAction'),
+
+(20720,10410,'Upload Project Document','Upload Files','','','',1,0,'documentation/defaultContent.html','ReferenceAction'),
+
+(20730,10410,'Delete Project Document','Delete selected File','','','',1,0,'documentation/defaultContent.html','ReferenceAction'),
+
+(20740,10410,'Download Project  Document','Download selected File','','','',1,0,'documentation/defaultContent.html','ReferenceAction'),
+
+(20750,10420,'Show Control Uploads','Show Uploaded Files','','','',1,0,'documentation/defaultContent.html','ReferenceAction'),
+
+(20760,10420,'Upload Control Project File','Upload a new File','','','',1,0,'documentation/defaultContent.html','ReferenceAction'),
+
+(20770,10420,'Delete Control Project File','Delete an Uploaded File','','','',1,0,'documentation/defaultContent.html','ReferenceAction'),
+
+(20780,10420,'Download Control Project File','Download a File from the list','','','',1,0,'documentation/defaultContent.html','ReferenceAction'),
+
+(20810,10330,'Change Password','Change Password(current user)','','','',1,0,'documentation/defaultContent.html','AdminAction'),
+
+(20820,10330,'Change Theme','Change Application\'s theme','','','',1,0,'documentation/defaultContent.html','AdminAction'),
+
+(20910,10350,'Display Users','Show the list of Users','','','',1,0,'documentation/defaultContent.html','AdminAction'),
+
+(20920,10350,'Delete User','Delete selected User(s)','','','',1,0,'documentation/defaultContent.html','AdminAction'),
+
+(20930,10350,'Add User','Add a new User-id','','','',1,0,'documentation/defaultContent.html','AdminAction'),
+
+(20940,10350,'Permissions','Display the list of Permissions for the selected User','','','',1,0,'documentation/defaultContent.html','AdminAction'),
+
+(20950,10350,'Edit Menu Permissions','Edit User Permissions(User cannot access functions disabled for him)','','','',1,0,'documentation/defaultContent.html','AdminAction'),
+
+(21010,10420,'Render Control Project','Render Control Project Directory','','','',1,0,'documentation/defaultContent.html','ControlProjectAction'),
+
+(21020,10420,'Delete Control Project','Delete Control Project/Estimate','','','',1,0,'documentation/defaultContent.html','ControlProjectAction'),
+
+(21030,10420,'Edit Control Project','Edit details of selected Project or Estimate','','','',1,0,'documentation/defaultContent.html','ControlProjectAction'),
+
+(21040,10420,'Add Control Project','Add new Control Project Directory','','','',1,0,'documentation/defaultContent.html','ControlProjectAction'),
+
+(21050,10420,'@@@@populateEstimateOptionsWindow','Populate window for Selection of Estimate','','','',2,0,'documentation/defaultContent.html','ControlProjectAction'),
+
+(21060,10420,'Add Control Estimate','Add selected Estimate to the list of Control Estimates','','','',1,0,'documentation/defaultContent.html','ControlProjectAction'),
+
+(21110,10420,'@@@@openControlBillWindow','open Control Bill to prepare schedule, add finished jobs','','','',2,0,'documentation/defaultContent.html','control_bill.jsp'),
+
+(21120,10420,'Render Control Bill','Render Assemblies used in Control Estimate','','','',1,0,'documentation/defaultContent.html','ControlBillAction'),
+
+(21130,10420,'Render Control Jobs','Render Control Jobs for scheduling and adding finished works','','','',1,0,'documentation/defaultContent.html','ControlBillAction'),
+
+(21140,10420,'Update Job Schedule','','','','',1,0,'documentation/defaultContent.html','ControlBillAction'),
+
+(21150,10420,'Show WorkDone List','Show list of works finished for a particular job','','','',1,0,'documentation/defaultContent.html','ControlBillAction'),
+
+(21160,10420,'Delete Work From List','Delete Finished Works','','','',1,0,'documentation/defaultContent.html','ControlBillAction'),
+
+(21170,10420,'Add New Finished Work','Add details of a Finished Work','','','',1,0,'documentation/defaultContent.html','ControlBillAction'),
+
+(22010,10440,'renderTenders','render Tender Directories and Tender documents','','','',1,0,'documentation/defaultContent.html','TenderAction'),
+
+(22020,10440,'deleteTenders','delete Tender Directories/Notifications','','','',1,0,'documentation/defaultContent.html','TenderAction'),
+
+(22030,10440,'updateTender','update Tender Document/Directory specification','','','',1,0,'documentation/defaultContent.html','TenderAction'),
+
+(22040,10440,'addTenderDirectory','-','','','',1,0,'documentation/defaultContent.html','TenderAction'),
+
+(22050,10440,'@@@@populateProjects','Populate Projects for selection (for Tender Specification)','','','',2,0,'documentation/defaultContent.html','TenderAction'),
+
+(22060,10440,'addTender','Add new Tender Document','','','',1,0,'documentation/defaultContent.html','TenderAction'),
+
+(22070,10440,'getNotes','Get Notes attached to the selected Tender Document','','','',1,0,'documentation/defaultContent.html','TenderAction'),
+
+(22071,10440,'deleteNote','Delete selected Notes attached to Tender Document','','','',1,0,'documentation/defaultContent.html','TenderAction'),
+
+(22072,10440,'updateNote','Update selected note attached to Tender Document','','','',1,0,'documentation/defaultContent.html','TenderAction'),
+
+(22073,10440,'addNote','Add a new Note to Tender Document','','','',1,0,'documentation/defaultContent.html','TenderAction'),
+
+(23010,10440,'@@@@renderBidWindow','Render IFRAME, containing the list of Vendors qualified for bid','','','',2,0,'documentation/defaultContent.html','bid.jsp'),
+
+(23020,10440,'renderBidders','render the list of Vendors selected to bid','','','',1,0,'documentation/defaultContent.html','BidAction'),
+
+(23030,10440,'deleteBidder','delete from the list of Bidders','','','',1,0,'documentation/defaultContent.html','BidAction'),
+
+(23040,10440,'@@@@renderContactsWindow','Render Contacts sub-window for selection of Bidders','','','',2,0,'documentation/defaultContent.html','BidAction'),
+
+(23050,10440,'addNewBidder','Add a contact into the list of Bidders','','','',1,0,'documentation/defaultContent.html','BidAction'),
+
+(23060,10440,'renderQuotation','render the quotation for the selected Bidder and Tender','','','',1,0,'documentation/defaultContent.html','BidAction'),
+
+(23070,10440,'updateQuotation','update Bidder\'s quotation','','','',1,0,'documentation/defaultContent.html','BidAction'),
+
+(24010,10140,'Get References','Display uploaded Documents','','','',1,0,'documentation/defaultContent.html','DocumentAction'),
+
+(24020,10140,'Delete References','Delete selected Documents/Directories',NULL,NULL,NULL,1,0,'documentation/defaultContent.html','DocumentAction'),
+
+(24030,10140,'Update References','Update Document/Directory Details',NULL,NULL,NULL,1,0,'documentation/defaultContent.html','DocumentAction'),
+
+(24040,10140,'Add Directory','Add a new Directory',NULL,NULL,NULL,1,0,'documentation/defaultContent.html','DocumentAction'),
+
+(24050,10140,'Upload Reference','Upload a new Document',NULL,NULL,NULL,1,0,'documentation/defaultContent.html','DocumentAction'),
+
+(24060,10140,'Download Reference','Download Ducument from server',NULL,NULL,NULL,1,0,'documentation/defaultContent.html','DocumentAction'),
+
+(24070,10140,'Move References','Move Document/Directory to a different location',NULL,NULL,NULL,1,0,'documentation/defaultContent.html','MoveAction'),
+
+(30010,10110,'Calculate Expression','','','','',1,0,'documentation/defaultContent.html','UtilityAction'),
+
+(30020,10130,'Get Contacts','','','','',1,0,'documentation/defaultContent.html','ContactAction'),
+
+(30030,10130,'Delete Contacts','','','','',1,0,'documentation/defaultContent.html','ContactAction'),
+
+(30040,10130,'Update Contact','','','','',1,0,'documentation/defaultContent.html','ContactAction'),
+
+(30050,10130,'Add Contact','Add new Contacts Dir/ New Contact','','','',1,0,'documentation/defaultContent.html','ContactAction'),
+
+(30060,10130,'-','','','','',5,0,'documentation/defaultContent.html','ContactAction'),
+
+(100100,10240,'Render Assemblies','Render Assemblies(with prices from the selected CostBook)','','','',1,0,'documentation/defaultContent.html','AssemblyAction'),
+
+(100200,10240,'Display CostBook','Display the list of CostBooks','','','',1,0,'documentation/defaultContent.html','AssemblyAction'),
+
+(100300,10240,'Get List of Assemblies','Print the list of Assemblies','','','',1,0,'documentation/defaultContent.html','PDFAction'),
+
+(100400,10240,'Analysis of Rate','Print Analysis of Rate of the selected Assembly','','','',1,0,'documentation/defaultContent.html','PDFAction'),
+
+(101100,10250,'Render Resources','Render Resources(with prices from selected CostBook)','','','',1,0,'documentation/defaultContent.html','MaterialAction'),
+
+(101200,10250,'Display CostBook','Display the list of CostBooks','','','',1,0,'documentation/defaultContent.html','MaterialAction'),
+
+(101300,10250,'Print Resources','Print the list of Resources in PDF','','','',1,0,'documentation/defaultContent.html','PDFAction'),
+
+(102100,10260,'Render Projects','Render Project directories for extracting reports','','','',1,0,'documentation/defaultContent.html','ProjectAction'),
+
+(102200,10260,'####getCostBookforEstimateReport','get cost book list, to be shown in reports section','','','',5,0,'documentation/defaultContent.html','ProjectAction'),
+
+(102300,10260,'####changeCostBookforEstimateRepor','change costbook for estimate, to be used inside reports','','','',5,0,'documentation/defaultContent.html','ProjectAction'),
+
+(102400,10260,'Show Documents','Show the list of Documents associated with a Project','','','',1,0,'documentation/defaultContent.html','ReferenceAction'),
+
+(102500,10260,'Download Document','Download the selected Document','','','',1,0,'documentation/defaultContent.html','ReferenceAction'),
+
+(102600,10260,'Project Summary','Print Project Summary','','','',1,0,'documentation/defaultContent.html','PDFAction'),
+
+(102700,10260,'Cost Sheet','Print Cost-Sheet of the selected Estimate','','','',1,0,'documentation/defaultContent.html','PDFAction'),
+
+(102800,10260,'Bill of Quantity','Print Bill of Quantity','','','',1,0,'documentation/defaultContent.html','PDFAction'),
+
+(102900,10260,'billOfQuantityforProject(Deprecated)','generate BOQ in PDF for selected Project','','','',5,0,'documentation/defaultContent.html','PDFAction'),
+
+(103100,10270,'Render Control Project Report','','','','',1,0,'documentation/defaultContent.html','ControlProjectAction'),
+
+(103200,10270,'Show Control Project Files','Show Uploaded Files','','','',1,0,'documentation/defaultContent.html','ReferenceAction'),
+
+(103300,10270,'Download Control Project Files','Download a File','','','',1,0,'documentation/defaultContent.html','ReferenceAction'),
+
+(103400,10270,'Control EstimateStatus Report','Generate report for the selected Control Estimate: work target vs total work done, Including material reconciliation','','','',1,0,'documentation/defaultContent.html','PDFAction'),
+
+(103500,10270,'Control Project StatusReport','Generate a cumulative report for the selected Control Project','','','',1,0,'documentation/defaultContent.html','PDFAction'),
+
+(104100,10290,'renderTendersForReport','render the existing Tender Documents for generating reports','','','',1,0,'documentation/defaultContent.html','TenderAction'),
+
+(104101,10270,'ControlProjectStatusReport1','generate report for selected control project directory','','','',5,0,'documentation/defaultContent.html','TenderAction'),
+
+(104200,10290,'generateDNIT','generate DNIT for the selected Tender Document','','','',1,0,'documentation/defaultContent.html','PDFAction'),
+
+(104300,10290,'@@@@getBiddersListForAnalysis','get the list of genuine bidders for Bid Analysis','','','',2,0,'documentation/defaultContent.html','BidAction'),
+
+(104400,10290,'generateComparitiveChart','generate Comparitive Chart for bids submitted by selected Bidders','','','',1,0,'documentation/defaultContent.html','SimpleHtmlReportAction'),
+
+(210000,1,'-----------------MENU FOR ASSEMBLY FOLLOWS-------------------','','','','',2,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210010,10010,'Up','','','callAssemblyAjax(assemblyTableparent);','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210020,10010,'Top','','','callAssemblyAjax(assemblyTableTop);','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210030,10010,'-','','','','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210040,10010,'Add New','','images/assembly/add.gif','myAssemblyAddWindow(TABLE_NAME);','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210050,10010,'Modify','','','','',3,140,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210060,210050,'Edit','','images/assembly/edit.png','myContextAssemblyEditWindow();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210070,210050,'Delete','','images/assembly/delete.gif','deleteContextChecked();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210080,210050,'-','','','','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210090,210050,'Cut','','images/assembly/editcut.png','cutContextSelected();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210100,210050,'Copy','','images/assembly/editcopy.png','copyContextSelected();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210110,210050,'Paste','','images/assembly/editpaste.png','callPasteToLocationAjax();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210120,1,'-----------------MENU FOR RESOURCES FOLLOWS-------------------','','','','',2,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210130,10020,'Up','','','callMaterialAjax(materialTableparent);','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210140,10020,'Top','','','callMaterialAjax(materialTableTop);','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210150,10020,'-','','','','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210160,10020,'Add New','','','','',3,140,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210170,210160,'New Category','','images/material/category_new.png','myMaterialAddWindow(TABLE_NAME,\"category\");','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210180,210160,'New Resource','','images/material/item_new.png','myMaterialAddWindow(TABLE_NAME,\"item\");','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210190,10020,'Modify','','','','',3,140,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210200,210190,'Edit','','images/material/edit.png','myContextMaterialEditWindow();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210210,210190,'Delete','','images/material/delete.gif','deleteContextChecked();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210220,210190,'-','','','','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210230,210190,'Cut','','images/material/editcut.png','cutContextSelected();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210240,210190,'Copy(Not Implemented)','','','','',2,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210250,210190,'Paste','','images/material/editpaste.png','callPasteToLocationAjax();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210300,1,'-----------------MENU FOR COSTBOOK FOLLOWS-------------------','','','','',2,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210310,10040,'Up','','','callCbCatAjax(cbCatTableparent);','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210320,10040,'Top','','','callCbCatAjax(cbCatTableTop);','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210330,10040,'-','','','','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210340,10040,'Add New','','','','',3,140,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210350,210340,'New Category','','images/costbook/folder.gif','myCbCatAddWindow(TABLE_NAME,\"cbCat\");','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210360,210340,'New CostBook','','images/costbook/costbook.png','myCbCatAddWindow(TABLE_NAME,\"cb\");','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210370,10040,'Modify','','','','',3,140,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210380,210370,'Edit','','images/costbook/edit.png','myContextCbCatEditWindow();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210390,210370,'Delete','','images/costbook/delete.gif','deleteContextChecked();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210400,210370,'-','','','','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210410,210370,'Cut','','images/costbook/editcut.png','cutContextSelected();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210420,210370,'Copy(Not Implemented)','','','','',2,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210430,210370,'Paste','','images/costbook/editpaste.png','callPasteToLocationAjax();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210440,10040,'-','','','','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210450,10040,'Edit Price','','images/costbook/editprice.gif','initCostBookWin(true);','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210500,10040,'-----------------Menu for Analysis of Rate-------------------','','','','',2,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210510,210500,'Up','','','callAssemblyAjax(assemblyTableparent);','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210520,210500,'Top','','','callAssemblyAjax(assemblyTableTop);','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210530,210500,'-','','','','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210540,210500,'Rate Analysis','','images/costbook/material.png','initAnalysisWin(true);','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210550,210500,'Add Resource','','images/common/add1.gif','initMaterialWin();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210560,210500,'Import','','','','',3,140,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210570,210500,'Edit','','images/common/page_edit.png','editContextMaterialsBox();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210580,210500,'Delete','','images/common/delete.gif','deleteContextMaterialsChecked();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210590,210500,'Add Overhead','','images/common/add1.gif','addContextOverheadsBox();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210600,210500,'Import','','','','',3,140,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210610,210500,'Edit','','images/common/page_edit.png','editContextOverheadsBox();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210620,210500,'Delete','','images/common/delete.gif','deleteContextOverheadsChecked();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210630,210560,'From CostBook','','','initImportAnalysisWin();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210640,210560,'From Assemblies','','','initAssemblyImportWin();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210650,210600,'From CostBook','','','initImportAnalysisWin();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210660,210600,'From Assemblies','','','initAssemblyImportWin();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210800,1,'-----------------MENU FOR DEFINITIVE ESTIMATE FOLLOWS-------------------','','','','',2,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210810,10410,'Up','','','callProjectAjax(projectTableparent);','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210820,10410,'Top','','','callProjectAjax(projectTableTop);','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210830,10410,'-','','','','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210840,10410,'Add New','','','','',3,140,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210850,210840,'New Project','','images/project/project.png','myProjectAddWindow(TABLE_NAME,\"project\");','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210860,210840,'New Estimate','','images/project/estimate.png','myProjectAddWindow(TABLE_NAME,\"estimate\");','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210870,10410,'Modify','','','','',3,140,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210880,210870,'Edit','','images/project/edit.png','myContextProjectEditWindow();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210890,210870,'Delete','','images/project/delete.gif','deleteContextChecked();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210900,210870,'-','','','','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210910,210870,'Cut','','images/project/editcut.png','cutContextSelected();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210920,210870,'Copy','','images/project/editcopy.png','copyContextSelected();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210930,210870,'Paste','','images/project/editpaste.png','callPasteToLocationAjax();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210940,10410,'-','','','','',2,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210950,10410,'Estimate','','','','',3,140,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210960,210950,'Change CostBook','','images/project/costbook.png','myContextCostBookEditWindow(TABLE_NAME);','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210970,210950,'Cost Sheet','','images/project/bill.png','openContextBillWindow();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210980,210950,'Overheads','','images/project/entry1.png','initItemWin(true);','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(210990,10410,'-','','','','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(211000,10410,'Manage Files','','images/project/attach.png','openFilesWindow();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(211010,10410,'-----------------Menu items for Overhead Window-------------------','','','','',2,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(211020,10410,'Add New','','images/common/add1.gif','addContextOverheadsBox();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(211030,10410,'Edit','','images/common/page_edit.png','editContextOverheadsBox();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(211040,10410,'Delete','','images/common/delete.gif','deleteContextOverheadsChecked();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(211100,10410,'-----------------Menu items for Bill Window-------------------','','','','',2,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(211110,211100,'Add Assembly','','images/common/add.gif','initAssemblyWin(TABLE_NAME);','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(211120,211100,'Edit(Not Implemented)','','','','',2,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(211130,211100,'Delete','','images/common/delete.gif','deleteContextChecked();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(211140,211100,'Manage Jobs','','images/common/add1.gif','initItemWin(true);','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(211150,211100,'Add New','','images/common/add1.gif','addContextJobsBox();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(211160,211100,'Edit','','images/common/page_edit.png','editContextJobsBox();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(211170,211100,'Delete','','images/common/delete.gif','deleteContextJobsChecked();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(211300,1,'-----------------MENU FOR ASSEMBLIES(REPORT) FOLLOWS-----------------','','','','',2,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(211310,10240,'Up','','','callAssemblyAjax(assemblyTableparent);','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(211320,10240,'Top','','','callAssemblyAjax(assemblyTableTop);','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(211330,10240,'-','','','','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(211340,10240,'Print Assemblies','','images/assembly/report/assembly.png','printAssemblies();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(211350,10240,'Analysis of Rate','','images/assembly/report/material.png','printMaterial();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(211360,10240,'-','','','','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(211370,10240,'CostBook','','','','',3,140,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(211380,211370,'Select','','images/assembly/report/costbook.png','myContextCostBookEditWindow();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(211390,211370,'Reset','','images/assembly/report/refresh.png','changeCostBook(0,\"--\");','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(211500,1,'-----------------MENU FOR RESOURCES(REPORT) FOLLOWS-----------------','','','','',2,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(211510,10250,'Up','','','callMaterialAjax(materialTableparent);','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(211520,10250,'Top','','','callMaterialAjax(materialTableTop);','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(211530,10250,'-','','','','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(211540,10250,'Print','','images/material/report/print.gif','printMaterial();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(211550,10250,'CostBook','','','','',3,140,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(211560,211550,'Select','','images/material/report/costbook.png','myContextCostBookEditWindow();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(211570,211550,'Reset','','images/material/report/refresh.png','changeCostBook(0,\"--\");','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(211700,1,'-----------------MENU FOR DEFINITIVE(REPORT) FOLLOWS-----------------','','','','',2,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(211710,10260,'Up','','','callProjectAjax(projectTableparent);','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(211720,10260,'Top','','','callProjectAjax(projectTableTop);','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(211730,10260,'-','','','','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(211740,10260,'Reports','','','','',3,140,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(211750,211740,'References','','images/project/report/file-manager.png','openFilesWindow();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(211760,211740,'Project Summary','','images/project/report/summary.gif','openProjectSummary();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(211770,211740,'-','','','','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(211780,211740,'Cost Sheet','','images/project/report/estimate.gif','openEstimateDetails();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(211790,211740,'Bill of Quantity','','images/project/report/boq.png','openBiilOfQuantity();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(211900,1,'-----------------MENU FOR USER MANAGEMENT FOLLOWS-----------------','','','','',2,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(211910,10350,'Add User','','images/admin/adduser.png','myUserAddWindow(TABLE_NAME);','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(211920,10350,'Delete User','','images/admin/delete.gif','deleteContextChecked();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(211930,10350,'-','','','','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(211940,10350,'Access Rights','','images/admin/permission.png','myContextUserAccesRightsWindow();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(212100,1,'-----------------MENU FOR CONTROL ESTIMATE FOLLOWS-----------------','','','','',2,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(212110,10420,'Up','','','callControlProjectAjax(controlProjectTableparent);','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(212120,10420,'Top','','','callControlProjectAjax(controlProjectTableTop);','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(212130,10420,'-','','','','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(212140,10420,'Add New','','','','',3,140,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(212150,10420,'-','','','','',2,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(212160,212140,'New Project','','images/project/project.png','myControlProjectAddWindow(TABLE_NAME,\"controlProject\");','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(212170,212140,'New Estimate','','images/project/control.png','initProjectWin(TABLE_NAME,\"controlEstimate\");','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(212180,10420,'Modify','','','','',3,140,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(212190,212180,'Edit','','images/project/edit.png','myContextControlProjectEditWindow();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(212200,212180,'Delete','','images/project/delete.gif','deleteContextChecked();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(212210,212180,'-','','','','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(212220,212180,'Cut','','images/project/editcut.png','cutContextSelected();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(212230,212180,'Copy(not implemented)','','images/project/editcopy.png','copyContextSelected();','',2,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(212240,212180,'Paste','','images/project/editpaste.png','callPasteToLocationAjax();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(212250,10420,'-','','','','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(212260,10420,'Estimate','','','','',3,140,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(212270,212260,'Prepare Tasks','','images/project/bill.png','openContextControlBillWindow();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(212280,10420,'Manage Files','','images/project/attach.png','openFilesWindow();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(212300,10420,'-----------------Menu for Control Bill-----------------','','','','',2,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(212310,212300,'Prepare Schedule','','images/project/tasks.png','planShcedule();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(212320,212300,'-','','','','',2,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(212330,212300,'Finished Jobs','','images/project/jobDone.png','showWorkDone();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(212340,212300,'Add New','','images/common/add1.gif','addContextWorksBox();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(212350,212300,'Delete','','images/common/delete.gif','deleteContextWorksChecked();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(212500,1,'-----------------MENU FOR CONTROL ESTIMATE(REPORTS) FOLLOWS----------------','','','','',2,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(212510,10270,'Up','','','callControlProjectAjax(controlProjectTableparent);','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(212520,10270,'Top','','','callControlProjectAjax(controlProjectTableTop);','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(212530,10270,'-','','','','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(212540,10270,'Project','','','','',3,140,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(212550,10270,'Estimate','','','','',3,140,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(212560,212540,'References','','images/project/report/file-manager.png','openFilesWindow();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(212570,212540,'Status Report','','images/project/report/summary.gif','getTimeFrame(\"projectStatus\");','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(212580,212550,'Work Status','','images/project/report/estimate.gif','getTimeFrame(\"workStatus\");','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(212800,1,'-----------------MENU FOR CONTACTS FOLLOWS----------------','','','','',2,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(212810,10130,'Up','','','callContactsAjax(contCatTableparent);','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(212820,10130,'Top','','','callContactsAjax(contCatTableTop);','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(212830,10130,'-','','','','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(212840,10130,'Add New','','','','',3,140,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(212850,212840,'New Directory','','images/utilities/folder.gif','myContCatAddWindow(TABLE_NAME,\"contactCat\");','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(212860,212840,'New Contact','','images/utilities/contact.png','myContCatAddWindow(TABLE_NAME,\"contact\");','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(212870,10130,'Modify','','','','',3,140,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(212880,212870,'Edit','','images/utilities/edit.png','myContextContCatEditWindow();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(212890,212870,'Delete','','images/utilities/delete.gif','deleteContextChecked();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(212900,212870,'-','','','','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(212910,212870,'Cut','','images/utilities/editcut.png','cutContextSelected();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(212920,212870,'Copy(Not Implemented)','','','','',2,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(212930,212870,'Paste','','images/utilities/editpaste.png','callPasteToLocationAjax();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(212940,10130,'-','','','','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(212950,10130,'Show Details','','images/utilities/editprice.gif','myContextContCatDetailWindow();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(213100,1,'-----------------MENU FOR DOCUMENTS FOLLOWS----------------','','','','',2,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(213110,10140,'Up','','','callDmsAjax(dmsTableparent);','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(213120,10140,'Top','','','callDmsAjax(dmsTableTop);','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(213130,10140,'-','','','','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(213140,10140,'Add New','','','','',3,140,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(213150,213140,'New Folder','','images/utilities/directory.png','myDmsAddWindow(TABLE_NAME,\"document\");','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(213160,213140,'New File','','images/utilities/reference.png','openFileUploadWindow(dmsTableCurrentParent);','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(213170,10140,'Modify','','','','',3,140,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(213180,213170,'Edit','','images/utilities/edit.png','myContextDmsEditWindow();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(213190,213170,'Delete','','images/utilities/delete.gif','deleteContextChecked();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(213200,213170,'-','','','','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(213210,213170,'Cut','','images/costbook/editcut.png','cutContextSelected();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(213220,213170,'Copy(Not Implemented)','','','','',2,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(213230,213170,'Paste','','images/costbook/editpaste.png','callPasteToLocationAjax();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(213400,1,'-----------------MENU FOR TENDERS FOLLOWS----------------','','','','',2,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(213410,10440,'Up','','','callTenderCatAjax(tenderCatTableparent);','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(213420,10440,'Top','','','callTenderCatAjax(tenderCatTableTop);','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(213430,10440,'-','','','','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(213440,10440,'Add New','','','','',3,140,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(213450,213440,'New Directory','','images/project/tender/directory1.png','myTenderCatAddWindow(TABLE_NAME,\"tenderDir\");','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(213460,213440,'New Tender','','images/project/tender/tender.png','initProjectWin(TABLE_NAME,\"tender\");','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(213470,10440,'Modify','','','','',3,140,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(213480,213470,'Edit','','images/project/tender/edit.png','myContextTenderCatEditWindow();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(213490,213470,'Delete','','images/project/tender/delete.gif','deleteContextChecked();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(213500,213470,'-','','','','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(213510,213470,'Cut','','images/project/tender/editcut.png','cutContextSelected();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(213520,213470,'Copy(Not Implemented)','','','','',2,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(213530,213470,'Paste','','images/project/tender/editpaste.png','callPasteToLocationAjax();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(213540,10440,'-','','','','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(213550,10440,'Tender','','','','',3,140,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(213560,213550,'Add Notes','','images/project/tender/notes.png','initItemWinNotes(true);','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(213570,213550,'Manage Bids','','images/project/tender/tendernotice.png','initBidWindowContext(true);','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(213600,10440,'-----------------Menu items for Bid Window-------------------','','','','',2,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(213610,213600,'Add Bidder','','images/project/tender/bidders1.png','initContactsWin(TABLE_NAME);','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(213620,213600,'Delete Bidder','','images/common/delete.gif','deleteContextChecked();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(213630,213600,'Quotation','','images/project/tender/quotation.png','openContextQuotationWin();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(213800,1,'-----------------MENU FOR TENDERS(Reports) FOLLOWS----------------','','','','',2,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(213810,10290,'Up','','','callTenderCatAjax(tenderCatTableparent);','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(213820,10290,'Top','','','callTenderCatAjax(tenderCatTableTop);','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(213830,10290,'-','','','','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(213840,10290,'Generate DNIT','','images/project/report/tender/dnit.png','generateDNIT();','',3,0,'documentation/defaultContent.html','defaultContent.jsp'),
+
+(213850,10290,'Bid Analysis','','images/project/report/tender/analysis.png','analyzeBids();','',3,0,'documentation/defaultContent.html','defaultContent.jsp')$
+
+/*Data for the table `menu_context` */
+
+insert into `menu_context` values 
+
+(1,210010,20010,'Up(Assembly)'),
+
+(2,210020,20010,'Top(Assembly)'),
+
+(3,210030,1,'-'),
+
+(4,210040,20040,'Add(Assembly)'),
+
+(5,210050,1,'Modify(Assembly)'),
+
+(6,210060,20030,'Edit(Assembly)'),
+
+(7,210070,20020,'Delete(Assembly)'),
+
+(8,210080,1,'-'),
+
+(9,210090,20610,'Cut(Assembly)'),
+
+(11,210100,20611,'Copy(Assembly)'),
+
+(12,210110,1,'Paste(Assembly, no association required)'),
+
+(13,210130,20110,'Up(Resource)'),
+
+(14,210140,20110,'Top(Resource)'),
+
+(15,210150,1,'-'),
+
+(16,210160,1,'Add New(Resource)'),
+
+(17,210170,20140,'Add Directory(Resource)'),
+
+(18,210180,20140,'Add Item(Resource)'),
+
+(19,210190,1,'Modify(Resource)'),
+
+(20,210200,20130,'Edit(Resource)'),
+
+(21,210210,20120,'Delete(Resource)'),
+
+(22,210220,1,'-'),
+
+(23,210230,20620,'Cut(Resource)'),
+
+(24,210240,20620,'Copy(Resource, not implemented)'),
+
+(25,210250,1,'Paste(Resource, no association required)'),
+
+(26,210310,20210,'Up(CB)'),
+
+(27,210320,20210,'Top(CB)'),
+
+(28,210330,1,'-'),
+
+(29,210340,1,'Add New(CB)'),
+
+(30,210350,20240,'Add Directory(CB)'),
+
+(31,210360,20240,'Add CostBook(CB)'),
+
+(32,210370,1,'Modify(CB)'),
+
+(33,210380,20230,'Edit(CB)'),
+
+(34,210390,20220,'Delete(CB)'),
+
+(35,210400,1,'-'),
+
+(36,210410,20630,'Cut(CB)'),
+
+(37,210420,20630,'Copy(CB, not implemented)'),
+
+(38,210430,1,'Paste(CB, no association required)'),
+
+(39,210440,1,'-'),
+
+(40,210450,20251,'Edit Price(CB)'),
+
+(41,210500,1,'menu for Analysis of Rates(CB, no association required)'),
+
+(42,210510,20250,'Up(CB, Assembly table)'),
+
+(43,210520,20250,'Top(CB, Assembly table)'),
+
+(44,210530,1,'-'),
+
+(45,210540,1,'Rate Analysis(CB, Opens Analysis of Rate window for selected assembly)'),
+
+(46,210550,20281,'Add Material(CB, Analysis of Rate)'),
+
+(47,210560,1,'Import(CB, import Materials from selected CB)'),
+
+(48,210570,20280,'Edit(Edit Material fraction)'),
+
+(49,210580,20271,'Delete(Delete selected Material)'),
+
+(50,210590,20286,'Add Overhead(CB, Analysis of Rate)'),
+
+(51,210600,1,'Import(CB, Import overheads from selected CB)'),
+
+(52,210610,20287,'Edit(Edit Overhead)'),
+
+(53,210620,20285,'Delete(Delete Overhead)'),
+
+(54,210800,1,'-'),
+
+(55,210810,20310,'Up(Definitive)'),
+
+(56,210820,20310,'Top(Definitive)'),
+
+(57,210830,1,'-'),
+
+(58,210840,1,'Add New(Definitive)'),
+
+(59,210850,20340,'New Project(Definitive)'),
+
+(60,210860,20340,'New Estimate(Definitive)'),
+
+(61,210870,1,'Modify(Definitive)'),
+
+(62,210880,20330,'Edit(Definitive)'),
+
+(63,210890,20320,'Delete(Definitive)'),
+
+(64,210900,1,'-'),
+
+(65,210910,20640,'Cut(Definitive)'),
+
+(66,210920,20650,'Copy(Definitive)'),
+
+(67,210930,1,'Paste(Definitive)'),
+
+(68,210940,1,'-'),
+
+(69,210950,1,'Estimate(Definitive)'),
+
+(70,210960,20360,'Change CostBook(Definitive)'),
+
+(71,210970,20420,'Prepare Bill(Definitive)'),
+
+(72,210980,20370,'Overheads(Definitive)'),
+
+(73,210990,1,'-'),
+
+(75,211000,20710,'Manage Files(Definitive)'),
+
+(76,211010,1,'-'),
+
+(77,211020,20390,'Add New(Definitive, Overhead)'),
+
+(78,211030,20391,'Edit(Definitive, Overhead)'),
+
+(79,211040,20380,'Delete(Definitive, Overhead)'),
+
+(80,211100,1,'-'),
+
+(81,211110,20460,'Add Assembly(Definitive, Bill)'),
+
+(82,211120,1,'Edit(Definitive, Bill, not implemented)'),
+
+(83,211130,20430,'Delete(Definitive, Bill)'),
+
+(84,211140,20470,'Manage Jobs(Definitive, Bill)'),
+
+(85,211150,20490,'Add New(Definitive, Bill, Add new job)'),
+
+(86,211160,20500,'Edit(Definitive, Bill, Edit Job)'),
+
+(87,211170,20480,'Delete(Definitive, Bill, Delete Job)'),
+
+(88,211300,1,'-'),
+
+(89,211310,100100,'Up(Assembly Report)'),
+
+(90,211320,100100,'Top(Assembly Report)'),
+
+(91,211330,1,'-'),
+
+(92,211340,100300,'Print Assemblies(Assembly Report)'),
+
+(93,211350,100400,'Analysis of Rate(Assembly Report)'),
+
+(94,211360,1,'-'),
+
+(95,211370,100200,'CostBook(Assembly Report)'),
+
+(96,211380,1,'Select(Assembly Report)'),
+
+(97,211390,1,'Reset(Assembly Report)'),
+
+(98,211500,1,'-'),
+
+(99,211510,101100,'Up(Resource Report)'),
+
+(100,211520,101100,'Top(Resource Report)'),
+
+(101,211530,1,'-'),
+
+(102,211540,101300,'Print(Resource Report)'),
+
+(103,211550,101200,'CostBook(Resource Report)'),
+
+(104,211560,1,'Select(Resource Report)'),
+
+(105,211570,1,'Reset(Resource Report)'),
+
+(106,211700,1,'-'),
+
+(107,211710,102100,'Up(Definitive Report)'),
+
+(108,211720,102100,'Top(Definitive Report)'),
+
+(109,211730,1,'-'),
+
+(110,211740,1,'Reports(Definitive Report)'),
+
+(111,211750,102400,'References(Definitive Report)'),
+
+(112,211760,1,'Project Summary(Definitive Report)'),
+
+(113,211770,1,'-'),
+
+(114,211780,102700,'Cost Sheet(Definitive Report)'),
+
+(115,211790,102800,'Bill of Quantity(Definitive Report)'),
+
+(116,211900,1,'-'),
+
+(117,211910,20930,'Add User(Admin)'),
+
+(118,211920,20920,'Delete User(Admin)'),
+
+(119,211930,1,'-'),
+
+(120,211940,20940,'Access Rights(Admin)'),
+
+(121,212100,1,''),
+
+(122,212110,21010,'Up(Control)'),
+
+(123,212120,21010,'Top(Control)'),
+
+(124,212130,1,''),
+
+(125,212140,1,'Add New(Control, no association required)'),
+
+(126,212150,1,''),
+
+(127,212160,21040,'New Project(Control)'),
+
+(128,212170,21060,'New Estimate(Control)'),
+
+(129,212180,1,'Modify(Control, no association required)'),
+
+(130,212190,21030,'Edit(Control)'),
+
+(131,212200,21020,'Delete(Control)'),
+
+(132,212210,1,''),
+
+(133,212220,20660,'Cut(Control)'),
+
+(134,212230,1,'Copy(Control, not implemented)'),
+
+(135,212240,1,'Paste(Control, no association required)'),
+
+(136,212250,1,''),
+
+(137,212260,1,'Estimate(Control)'),
+
+(138,212270,21120,'Prepare Task(Control)'),
+
+(139,212280,20750,'Manage Files(Control)'),
+
+(140,212300,1,'-'),
+
+(141,212310,21140,'Prepare Schedule(Control Bill)'),
+
+(142,212320,1,'-'),
+
+(143,212330,21150,'Finished Jobs(Control Bill)'),
+
+(144,212340,21170,'Add New(Control Bill)'),
+
+(145,212350,21160,'Delete(Control Bill)'),
+
+(146,212500,1,'-'),
+
+(147,212510,103100,'Up(Control Report)'),
+
+(148,212520,103100,'Top(Control Report)'),
+
+(149,212530,1,'-'),
+
+(150,212540,1,'Project(Control Report)'),
+
+(151,212550,1,'Estimate(Control Report)'),
+
+(152,212560,103200,'References(Control Report)'),
+
+(153,212570,103500,'Status Report(Control Report)'),
+
+(154,212580,103400,'Work Status(Control Report)'),
+
+(155,212800,1,'-'),
+
+(156,212810,30020,'Up(Contacts)'),
+
+(157,212820,30020,'Top(Contacts)'),
+
+(158,212830,1,'-'),
+
+(159,212840,1,'Add New(Contacts)'),
+
+(160,212850,30050,'New Category(Contacts)'),
+
+(161,212860,30050,'New Contact(Contacts)'),
+
+(162,212870,1,'Modify(Contacts)'),
+
+(163,212880,30040,'Edit(Contacts)'),
+
+(164,212890,30030,'Delete(Contacts)'),
+
+(165,212900,1,'-'),
+
+(166,212910,20680,'Cut(Contacts)'),
+
+(167,212920,1,'Copy(Contacts, not implemented)'),
+
+(168,212930,1,'Paste(Contacts, no association required)'),
+
+(169,212940,1,'-'),
+
+(170,212950,30020,'Show Details(Contacts)'),
+
+(171,213100,1,'-'),
+
+(172,213110,24010,'Up(Docs)'),
+
+(173,213120,24010,'Top(Docs)'),
+
+(174,213130,1,'-'),
+
+(175,213140,1,'Add New(Docs)'),
+
+(176,213150,24040,'New Directory(Docs)'),
+
+(177,213160,24050,'New File(Docs)'),
+
+(178,213170,1,'Modify(Docs)'),
+
+(179,213180,24030,'Edit(Docs)'),
+
+(180,213190,24020,'Delete(Docs)'),
+
+(181,213200,1,'-'),
+
+(182,213210,24070,'Cut(Docs)'),
+
+(183,213220,1,'Copy(Docs, not implemented)'),
+
+(184,213230,1,'Paste(Docs)'),
+
+(186,20211,20282,'(Costbook)If we cannot import Rates, don\'t show the CostBook window'),
+
+(187,20260,20281,'(CostBook)If we cannot add a new Resource into Analysis of Rate, don\'t open'),
+
+(188,210630,20282,'From CostBook(into list of resource)'),
+
+(189,210640,20291,'From Assemblies(into list of resources)'),
+
+(191,210650,20282,'From CostBook(into list of overheads)'),
+
+(192,210660,20291,'From Assemblies(into list of overheads)'),
+
+(194,20290,20291,'If we cannot import from assemblies(Analysis), don\'t show the window'),
+
+(195,213400,1,'-'),
+
+(196,213410,22010,'Up(Tenders)'),
+
+(197,213420,22010,'Top(Tenders)'),
+
+(198,213430,1,'-'),
+
+(199,213440,1,'Add New(Tenders)'),
+
+(200,213450,22040,'New Directory(Tenders)'),
+
+(201,213460,22060,'New Tender(Tenders)'),
+
+(202,213470,1,'Modify(Tenders)'),
+
+(203,213480,22030,'Edit(Tenders)'),
+
+(204,213490,22020,'Delete(Tenders)'),
+
+(205,213500,1,'-'),
+
+(206,213510,20690,'Cut(Tenders)'),
+
+(207,213520,1,'Copy(Not Implemented, Tenders)'),
+
+(208,213530,1,'Paste(Tenders)'),
+
+(209,213540,1,'-'),
+
+(210,213550,1,'Tenders(Tenders)'),
+
+(211,213560,22070,'Add Notes(Tenders)'),
+
+(212,213570,23020,'Manage Bids(Tenders)'),
+
+(218,22050,22060,'If we cannot add a new Tender, don\'t show Project window(Tenders)'),
+
+(219,213600,1,'-'),
+
+(221,213610,23050,'Add Bidder(Bidders Window)'),
+
+(222,213620,23030,'Delete Bidder(Bidders Window)'),
+
+(224,213630,23060,'Render Quotation(Bidders Window)'),
+
+(225,23040,23050,'If we cannot add a new bidder, don\'t open the contacts window(Bidders Window)'),
+
+(226,213800,1,'-'),
+
+(227,213810,104100,'Up(Tender Report)'),
+
+(228,213820,104100,'Top(Tender Report)'),
+
+(229,213830,1,'-'),
+
+(230,213840,104200,'Generate DNIT(Tender Report)'),
+
+(231,213850,104400,'Tender Analysis(Tender Report)'),
+
+(232,104300,104400,'If we cannot generate Analysis, don\'t open vendors window(Tender Report)')$
+
+
+/*Data for the table `project` */
+
+insert into `project` values 
+
+(1,'name','spec','remarks',1)$
+
+/*Data for the table `tender_directory` */
+
+insert into `tender_directory` values 
+
+(1,1,'Parent','-','-')$
+
+/*Data for the table `user` */
+
+insert into `user` values 
+
+(1,'user','900150983cd24fb0d6963f7d28e17f72','User','remarks','-','gray',1)$
+
+/*Data for the table `userdirectory` */
+
+insert into `userdirectory` values 
+
+(1,'-','-','-',1)$
+
+SET FOREIGN_KEY_CHECKS=1$

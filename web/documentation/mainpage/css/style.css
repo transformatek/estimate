@@ -1,0 +1,29 @@
+@CHARSET "ISO-8859-1";
+table.productpage {
+    background-image: url('../images/bg.jpg');
+    background-repeat: repeat-y,repeat-x;
+    /* background-color: #054365; */
+    color: white;
+}
+td.logo {
+    background-image: url('../images/bg.jpg');
+    background-repeat: repeat-y,repeat-x;
+    /* background-color: #054365; */
+    color: white;
+}
+
+font.logo {
+    font-size: 250%;
+    font-weight: 900;
+    padding: 2px 5px 2px 5px;
+}
+
+font.release {
+    font-size: 125%;
+    font-weight: 900;
+}
+
+font.productStatement {
+    font-size: 120%;
+    font-weight: 700;
+}
